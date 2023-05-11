@@ -20,7 +20,7 @@ Para los usuarios registrados:
 
 Para el administrador:
 - Ver todos los usuarios registrados.
-- Poder añadir nuevas ofertas.
+- Poder añadir nuevas ofertas, hoteles y restaurantes.
 
 ## Tecnologías
 
