@@ -39,3 +39,6 @@ Para este proyecto utilizaré las siguientes tecnologías:
 
 ## Estructura Base de Datos provisional
 <img src="img/esquema.png" width="700" alt="esquema">
+
+## Vídeo de lo que llevo hasta ahora
+https://drive.google.com/file/d/1eVLiu2hSIjN3dlcXtGDuFybV3R1mQP5N/view?usp=share_link
