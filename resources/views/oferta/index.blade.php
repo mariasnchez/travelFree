@@ -2,76 +2,117 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>TravelFree</title>
     <style>
-    .bg-image {
-        background-image: url('{{ asset('img/cabecera.jpg') }}');
-    }
-    .search-input {
-      background-image: url('{{ asset('img/buscador.svg') }}');
-      background-repeat: no-repeat;
-      background-position: 10px center;
-      padding-left: 40px;
-    }
-</style>
-</head>
-<body  class="bg-cyan-700" >
-    
-    
-    <div class= "grid place-items-center h-80 bg-image bg-cover" >
-    <div class="absolute inset-0 bg-black opacity-40 h-80"></div>
-            <div >
-                  <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </div>
-        <h1 class="absolute text-9xl text-white">TravelFree<img class="inline-block w-28 " src="{{URL::asset('img/logo.svg')}}"/></h1>
-    </div>
+        .bg-image {
+            background-image: url('{{ asset('img/cabecera.jpg') }}');
+        }
 
-    <div class="flex items-center justify-center mt-10 text-white text-2xl">
-        <a class="border rounded-md px-2 mr-6 cursor-pointer">HOTELES</a>
-        <a class="border rounded-md px-2 ml-6 cursor-pointer">DESTINOS</a>
+        .search-input {
+            background-image: url('{{ asset('img/buscador.svg') }}');
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 40px;
+        }
+    </style>
+
+</head>
+
+<body class="bg-[#ECECEC]">
+
+
+    <div class="grid place-items-center h-60 bg-image bg-cover">
+        <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
+        <div>
+            <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                href="{{ route('login') }}">{{ __('Login') }}</a>
+        </div>
+        <h1 class="absolute text-9xl text-white">
+            TravelFree
+            <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" />
+        </h1>
     </div>
 
     <div class="flex items-center justify-center m-5">
-        <div class="max-w-md w-full">
-            <div class="flex items-center shadow-xl">
-                <input type="text" id="search-input" placeholder="¿Dónde quieres ir?" class="search-input w-full appearance-none rounded-xl border py-3 pl-12 pr-12 outline-none focus:bg-slate-100">
-            </div>
+        <div class="flex items-center justify-between shadow-xl w-full px-80 mx-4 py-16 bg-slate-300">
+            <form action="ciudad" method="GET" class="w-full">
+                <div class="flex">
+                    <input type="text" id="search-input" name="query" placeholder="¿Dónde quieres ir?"
+                        class="search-input rounded-md w-full appearance-none border-0 py-3 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100 mt-4 mb-4 h-16" />
+                    <button type="submit"
+                        class="flex rounded-md items-center justify-center bg-slate-500 hover:bg-slate-600 text-white py-2 px-4 ml-1 mt-4 mb-4">
+                        Buscar
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div class>
+        <div class="flex items-center m-10 text-black text-4xl uppercase">
+            <h1>Búsquedas recientes</h1>
         </div>
     </div>
 
-     <div class="flex items-center m-10  text-white text-2xl">
-        <h1>Búsquedas recientes</h1>
+    <div class="flex items-center m-10 text-black text-4xl uppercase">
+        <h1>Ciudades destacadas</h1>
     </div>
 
-    <div class="flex items-center m-10 text-white text-2xl">
-        <h1>Las mejores ofertas en el momento</h1>
-        @foreach ($oferta as $oferta)
-        {{ $oferta->precioOferta }}
+    <div class="grid grid-cols-4 gap-4 m-10">
+        @foreach ($ciudades as $key => $ciudad)
+            @if ($key < 4)
+                <div class="relative max-w-sm rounded overflow-hidden shadow-lg">
+                    <img class="w-full" src="{{ $ciudad->foto1 }}" alt="">
+                    <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
+                    <div class="absolute bottom-0 left-0 text-white px-2 py-1">
+                        <p class="font-bold text-xl uppercase">{{ $ciudad->nombre }}</p>
+                        <p class="text-xs uppercase">{{ $ciudad->pais }}</p>
+                    </div>
+                </div>
+            @endif
         @endforeach
     </div>
 
-    <!-- <div class="grid place-items-center bg-cyan-700">
-        <div class="grid place-items-end bg-white mb-10 rounded-lg bg-cyan-50">
-        <table class="text-center mb-10 ml-10 mr-10">
-                    <thbody class="border border-gray-400">
-                            @foreach ($oferta as $oferta)
 
-                                    <tr class="border border-gray-400">
-                                        
-                                    <tr>
-                                
-                            @endforeach
-                    <thbody>    
-            </table>
-        </div>
-     </div> -->
+    <div class="flex items-center m-10 text-black text-4xl uppercase">
+        <h1>Las mejores ofertas en el momento</h1>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 m-10">
+        @php
+            $randomOfertas = $oferta->shuffle()->take(6);
+        @endphp
+
+        @foreach ($randomOfertas as $oferta)
+            <div class="relative max-w-full rounded overflow-hidden shadow-lg">
+                <img class="w-full h-auto" src="{{ $oferta->hotel->foto1 }}" alt="">
+                <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
+                <div class="absolute top-0 left-0 p-2 text-white">
+                    <p class="font-bold text-xl uppercase">{{ $oferta->hotel->nombre }}</p>
+                    <p class="text-xs uppercase">{{ $oferta->hotel->ciudad->nombre }}</p>
+                </div>
+                <div class="absolute bottom-0 right-0 text-white px-2 py-1">
+                    <p class="text-lg line-through inline-block">{{ $oferta->hotel->precio }}€</p>
+                    <p class="font-bold text-3xl inline-block">{{ $oferta->precioOferta }}€</p>
+                </div>
+
+            </div>
+        @endforeach
+    </div>
+
+
+
 
 </body>
+
 </html>
-
-

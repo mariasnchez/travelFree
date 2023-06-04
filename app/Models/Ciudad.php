@@ -29,9 +29,11 @@ class Ciudad extends Model
     protected $fillable = ['nombre', 'pais', 'descripcion', 'foto1', 'foto2', 'foto3', 'foto4'];
 
 
-    public function hotel(){
-        return $this->hasMany('App\Models\Hotel','idHotel','idCiudad');
+    public function hotel()
+    {
+        return $this->hasMany('App\Models\Hotel', 'idCiudad', 'idCiudad');
     }
+
 
     public function restaurante(){
         return $this->hasMany('App\Models\Restaurante','idRestaurante','idCiudad');
