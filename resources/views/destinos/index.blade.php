@@ -79,7 +79,7 @@
                                     <?php } ?>
                                 
                             @endforeach
-                    <thbody>    
+                    </thbody>    
             </table>
         </div>
      </div>

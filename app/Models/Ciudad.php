@@ -36,7 +36,7 @@ class Ciudad extends Model
 
 
     public function restaurante(){
-        return $this->hasMany('App\Models\Restaurante','idRestaurante','idCiudad');
+        return $this->hasMany('App\Models\Restaurante','idCiudad','idCiudad');
 
     }
 }

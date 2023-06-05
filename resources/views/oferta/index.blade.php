@@ -43,26 +43,27 @@
         <div class="flex items-center justify-between shadow-xl w-full px-80 mx-4 py-16 bg-slate-300">
             <form action="ciudad" method="GET" class="w-full">
                 <div class="flex">
-                    <input type="text" id="search-input" name="query" placeholder="¿Dónde quieres ir?"
-                        class="search-input rounded-md w-full appearance-none border-0 py-3 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100 mt-4 mb-4 h-16" />
+                    <select id="search-input" name="query"
+                        class="search-input rounded-md w-full appearance-none border-0 py-3 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100 mt-4 mb-4 h-16">
+                        <option value="">¿Dónde quieres ir?</option>
+                        @foreach ($ciudades as $ciudad)
+                            <option value="{{ $ciudad->nombre }}">{{ $ciudad->nombre }}</option>
+                        @endforeach
+                    </select>
                     <button type="submit"
                         class="flex rounded-md items-center justify-center bg-slate-500 hover:bg-slate-600 text-white py-2 px-4 ml-1 mt-4 mb-4">
                         Buscar
                     </button>
                 </div>
             </form>
-
-        </div>
-
-    </div>
-
-
-
-    <div class>
-        <div class="flex items-center m-10 text-black text-4xl uppercase">
-            <h1>Búsquedas recientes</h1>
         </div>
     </div>
+
+
+    <div class="flex items-center m-10 text-black text-4xl uppercase">
+        <h1>Búsquedas recientes</h1>
+    </div>
+
 
     <div class="flex items-center m-10 text-black text-4xl uppercase">
         <h1>Ciudades destacadas</h1>
