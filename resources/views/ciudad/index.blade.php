@@ -93,10 +93,8 @@
                 showSlide(currentSlide - 1);
             }
 
-            // Mostrar la primera imagen al cargar la página
             showSlide(currentSlide);
 
-            // Agrega los event listeners para las flechas previas y siguientes
             var prevButton = document.querySelector(".prev");
             var nextButton = document.querySelector(".next");
 

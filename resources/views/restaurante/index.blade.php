@@ -33,9 +33,12 @@
 
     </div>
 
+    <div class="ml-6 mt-6 text-black">
+        <a href="ciudad?query={{ $query }}" class="text-sm hover:underline"><img class="inline-block w-5 mr-2"
+                src="{{ URL::asset('img/volver.svg') }}" />Volver</a>
+    </div>
 
-
-    <div class="flex items-center m-10 mb-3 text-black text-3xl">
+    <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
         <p>{{ $total }} restaurantes en </p>
         <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RestauranteController;
+use App\Http\Controllers\HotelDetalladoController;
 use App\Http\Controllers\HotelVisitadoController;
 use App\Http\Controllers\RestauranteVisitadoController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::resource('/ofertas', OfertaController::class);
 Route::resource('/ciudad', CiudadController::class);
 Route::resource('/hotel', HotelController::class);
 Route::resource('/restaurante', RestauranteController::class);
+Route::resource('/hotelDetallado', HotelDetalladoController::class);
 Route::resource('/hotelVisitado', HotelVisitadoController::class)->middleware('auth');
 Route::resource('/restauranteVisitado', RestauranteVisitadoController::class)->middleware('auth');
 

@@ -31,8 +31,12 @@
 
     </div>
 
+    <div class="ml-6 mt-6 text-black">
+        <a href="ciudad?query={{ $query }}" class="text-sm hover:underline"><img class="inline-block w-5 mr-2"
+                src="{{ URL::asset('img/volver.svg') }}" />Volver</a>
+    </div>
 
-    <div class="flex items-center m-10 mb-3 text-black text-3xl">
+    <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
         <p>{{ $total }} hoteles en </p>
         <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
     </div>
@@ -48,7 +52,10 @@
                 @foreach ($hoteles as $i => $hotel)
                     <div class="bg-white rounded-md p-4 h-40 flex relative">
                         <div class="flex flex-col flex-grow">
-                            <p class="font-bold text-xl uppercase">{{ $i + 1 }}. {{ $hotel->nombre }}</p>
+                            <a class="cursor-pointer hover:font-bold hover:underline"
+                                href="/hotelDetallado?query={{ $hotel->nombre }}">
+                                <p class=" text-xl uppercase">{{ $i + 1 }}. {{ $hotel->nombre }}</p>
+                            </a>
                             <p class="text-sm">{{ $hotel->direccion }}</p>
                             <div class="absolute bottom-4 left-4">
                                 <p class="text-2xl text-white rounded-lg bg-slate-400 p-1 w-fit">
