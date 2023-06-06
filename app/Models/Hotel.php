@@ -57,7 +57,7 @@ class Hotel extends Model
 
     public function ofertas()
     {
-        return $this->hasMany("App\Models\Oferta", "idOferta", "idHotel");
+        return $this->hasMany("App\Models\Oferta", "idHotel", "idHotel");
     }
 
     public function usuario()

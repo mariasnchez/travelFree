@@ -39,7 +39,7 @@ class Restaurante extends Model
     protected $fillable = ['nombre', 'direccion', 'descripcion', 'valoracion', 'valCom', 'valSer', 'valCalPre', 'foto1', 'foto2', 'foto3', 'foto4', 'foto5', 'foto6', 'idCiudad'];
 
     public function ciudad(){
-        return $this->belongsTo('App\Models\Ciudad', 'idHotel', 'idCiudad');
+        return $this->belongsTo('App\Models\Ciudad', 'idCiudad', 'idCiudad');
     }
 
     public function user()
