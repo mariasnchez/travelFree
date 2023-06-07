@@ -72,14 +72,17 @@
     <div class="grid grid-cols-4 gap-4 m-10">
         @foreach ($ciudades as $key => $ciudad)
             @if ($key < 4)
-                <div class="relative max-w-sm rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="{{ $ciudad->foto1 }}" alt="">
-                    <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
-                    <div class="absolute bottom-0 left-0 text-white px-2 py-1">
-                        <p class="font-bold text-xl uppercase">{{ $ciudad->nombre }}</p>
-                        <p class="text-xs uppercase">{{ $ciudad->pais }}</p>
+                <a class="cursor-pointer" href="/ciudad?query={{ $ciudad->nombre }}">
+                    <div class="relative max-w-sm rounded overflow-hidden shadow-lg hover:scale-105">
+                        <img class="w-full" src="{{ $ciudad->foto1 }}" alt="">
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full">
+                        </div>
+                        <div class="absolute bottom-0 left-0 text-white px-2 py-1">
+                            <p class="font-bold text-xl uppercase">{{ $ciudad->nombre }}</p>
+                            <p class="text-xs uppercase">{{ $ciudad->pais }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endif
         @endforeach
     </div>
@@ -95,19 +98,20 @@
         @endphp
 
         @foreach ($randomOfertas as $oferta)
-            <div class="relative max-w-full rounded overflow-hidden shadow-lg">
-                <img class="w-full h-auto" src="{{ $oferta->hotel->foto1 }}" alt="">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
-                <div class="absolute top-0 left-0 p-2 text-white">
-                    <p class="font-bold text-xl uppercase">{{ $oferta->hotel->nombre }}</p>
-                    <p class="text-xs uppercase">{{ $oferta->hotel->ciudad->nombre }}</p>
+            <a class="cursor-pointer" href="/hotelDetallado?query={{ $oferta->hotel->nombre }}">
+                <div class="relative max-w-full rounded overflow-hidden shadow-lg hover:scale-105">
+                    <img class="w-full h-auto" src="{{ $oferta->hotel->foto1 }}" alt="">
+                    <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full"></div>
+                    <div class="absolute top-0 left-0 p-2 text-white">
+                        <p class="font-bold text-xl uppercase">{{ $oferta->hotel->nombre }}</p>
+                        <p class="text-xs uppercase">{{ $oferta->hotel->ciudad->nombre }}</p>
+                    </div>
+                    <div class="absolute bottom-0 right-0 text-white px-2 py-1">
+                        <p class="text-lg line-through inline-block">{{ $oferta->hotel->precio }}€</p>
+                        <p class="font-bold text-3xl inline-block">{{ $oferta->precioOferta }}€</p>
+                    </div>
                 </div>
-                <div class="absolute bottom-0 right-0 text-white px-2 py-1">
-                    <p class="text-lg line-through inline-block">{{ $oferta->hotel->precio }}€</p>
-                    <p class="font-bold text-3xl inline-block">{{ $oferta->precioOferta }}€</p>
-                </div>
-
-            </div>
+            </a>
         @endforeach
     </div>
 

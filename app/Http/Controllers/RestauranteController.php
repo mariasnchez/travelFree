@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurante;
+use App\Models\RestauranteVisitado;
 use App\Models\Ciudad;
 
 use Illuminate\Http\Request;
@@ -28,12 +29,22 @@ class RestauranteController extends Controller
         })->get();
 
         $restaurantes->each(function ($restaurante) {
-            $media =
-                ($restaurante->valCom +
-                    $restaurante->valSer +
-                    $restaurante->valCalPre) /
-                3;
-            $restaurante->media = $media;
+            $restauranteVisitado = RestauranteVisitado::where('idRes', $restaurante->idRes)->get();
+            $numeroComentarios = RestauranteVisitado::where('idRes', $restaurante->idRes)->count();
+            $sumaTotal = 0;
+        
+            foreach ($restauranteVisitado as $visitado) {
+                $sumaTotal += $visitado->punCom + $visitado->punSer + $visitado->punCalPre;
+            }
+        
+            if ($numeroComentarios > 0) {
+                $media = $sumaTotal / ($numeroComentarios * 3);
+                $mediaRedondeada = round($media, 1);
+            } else {
+                $mediaRedondeada = 0;
+            }
+        
+            $restaurante->media = $mediaRedondeada;
         });
 
         return view(

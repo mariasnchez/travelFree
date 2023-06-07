@@ -60,6 +60,11 @@ class Hotel extends Model
         return $this->hasMany("App\Models\Oferta", "idHotel", "idHotel");
     }
 
+    public function hotelVisitado()
+    {
+        return $this->hasMany('App\Models\HotelVisitado', 'idHotel', 'idHotel');
+    }
+
     public function usuario()
     {
         return $this->belongsToMany(

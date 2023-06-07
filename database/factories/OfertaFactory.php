@@ -19,7 +19,7 @@ class OfertaFactory extends Factory
         return [
             'precioOferta' => fake()->numberBetween($min = 40, $max = 300),
             'fechaFin' => fake()->date($format = '2018-01-01', $max = 'now'),
-            'idHotel' => fake()->numberBetween(1,300),
+            'idHotel' => fake()->numberBetween(1,150),
         ];
     }
 }

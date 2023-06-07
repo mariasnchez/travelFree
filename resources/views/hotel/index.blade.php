@@ -57,11 +57,14 @@
                                 <p class=" text-xl uppercase">{{ $i + 1 }}. {{ $hotel->nombre }}</p>
                             </a>
                             <p class="text-sm">{{ $hotel->direccion }}</p>
-                            <div class="absolute bottom-4 left-4">
-                                <p class="text-2xl text-white rounded-lg bg-slate-400 p-1 w-fit">
-                                    {{ number_format($hotel->media, 1) }}
-                                </p>
-                            </div>
+                            @if ($hotel->media > 0)
+                                <div class="absolute bottom-4 left-4">
+                                    <p class="text-2xl text-white rounded-lg bg-slate-400 p-1 w-fit">
+                                        {{ number_format($hotel->media, 1) }}
+                                    </p>
+                                </div>
+                            @endif
+
                         </div>
                         <div class="flex flex-col-reverse">
                             <div class=" mr-4">

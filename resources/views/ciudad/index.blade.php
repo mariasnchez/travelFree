@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelFree</title>
-    <link rel="stylesheet" href="https://unpkg.com/@splidejs/splide@3.4.9/dist/css/splide.min.css">
     <style>
         .bg-image {
             background-image: url('{{ asset('img/cabecera.jpg') }}');
@@ -150,13 +149,15 @@
 
     <div class="flex items-center justify-center mt-6 mb-10">
         <div class="relative bg-white rounded-md w-48 mx-2 hover:bg-slate-100">
-            <a href="hotel?query={{ $query }}" class="flex flex-col items-start justify-end h-full p-4 text-black">
+            <a href="hotel?query={{ $query }}"
+                class="flex flex-col items-start justify-end h-full p-4 text-black">
                 <img class="inline-block w-10" src="{{ URL::asset('img/hotel.svg') }}" />
                 <span class="text-base font-bold ml-24">HOTELES</span>
             </a>
         </div>
         <div class="relative bg-white rounded-md w-48 mx-2 hover:bg-slate-100">
-            <a href="restaurante?query={{ $query }}" class="flex flex-col items-start justify-end h-full p-4 text-black">
+            <a href="restaurante?query={{ $query }}"
+                class="flex flex-col items-start justify-end h-full p-4 text-black">
                 <img class="inline-block w-10" src="{{ URL::asset('img/restaurante.svg') }}" />
                 <p class="text-base font-bold ml-12">RESTAURANTES</p>
             </a>
@@ -200,13 +201,16 @@
 
     <div class="grid grid-cols-4 gap-4 m-10">
         @foreach ($hotelesDestacados as $hotel)
-            <div class="relative max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="{{ $hotel->foto1 }}" alt="">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
-                <div class="absolute bottom-0 left-0 text-white px-2 py-1">
-                    <p class="font-bold text-xl uppercase">{{ $hotel->nombre }}</p>
+            <a class="cursor-pointer" href="/hotelDetallado?query={{ $hotel->nombre }}">
+                <div class="relative max-w-sm rounded overflow-hidden shadow-lg hover:scale-105">
+                    <img class="w-full" src="{{ $hotel->foto1 }}" alt="">
+                    <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full">
+                    </div>
+                    <div class="absolute bottom-0 left-0 text-white px-2 py-1">
+                        <p class="font-bold text-xl uppercase">{{ $hotel->nombre }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
 
@@ -216,13 +220,15 @@
 
     <div class="grid grid-cols-4 gap-4 m-10">
         @foreach ($restaurantesDestacados as $restaurante)
-            <div class="relative max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="{{ $restaurante->foto1 }}" alt="">
-                <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 w-full h-full"></div>
-                <div class="absolute bottom-0 left-0 text-white px-2 py-1">
-                    <p class="font-bold text-xl uppercase">{{ $restaurante->nombre }}</p>
+            <a class="cursor-pointer" href="/restauranteDetallado?query={{ $restaurante->nombre }}">
+                <div class="relative max-w-sm rounded overflow-hidden shadow-lg hover:scale-105">
+                    <img class="w-full" src="{{ $restaurante->foto1 }}" alt="">
+                    <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full"></div>
+                    <div class="absolute bottom-0 left-0 text-white px-2 py-1">
+                        <p class="font-bold text-xl uppercase">{{ $restaurante->nombre }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
 </body>

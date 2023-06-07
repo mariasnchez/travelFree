@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\HotelVisitado;
-use App\Models\Ciudad;
 
 use Illuminate\Http\Request;
 
@@ -26,14 +25,7 @@ class HotelDetalladoController extends Controller
             $hotel->idHotel
         )->count();
 
-        $media =
-            ($hotel->valUbi +
-                $hotel->valLim +
-                $hotel->valSer +
-                $hotel->valCalPre) /
-            4;
 
-        //Calcular media para los que tienen opiniones
         $sumaTotal = 0;
         $sumaUbi = 0;
         $sumaLim = 0;
@@ -52,8 +44,8 @@ class HotelDetalladoController extends Controller
             $sumaCalPre += $visitado->punCalPre;
         }
         if ($numeroComentarios > 0) {
-            $media2 = $sumaTotal / ($numeroComentarios * 4);
-            $mediaRedondeada = round($media2, 1);
+            $media = $sumaTotal / ($numeroComentarios * 4);
+            $mediaRedondeada = round($media, 1);
         }  else {
             $mediaRedondeada = 0; 
         }
@@ -64,7 +56,6 @@ class HotelDetalladoController extends Controller
                 "hotel",
                 "query",
                 "numeroComentarios",
-                "media",
                 "mediaRedondeada",
                 "hotelVisitado",
                 "sumaUbi",

@@ -137,45 +137,49 @@
     </div>
 
     <div class=" ml-6 mt-6 text-black">
-        <a href="hotel?query={{ $hotel->ciudad->nombre }}" class="text-sm hover:underline"><img
-                class="inline-block w-5 mr-2" src="{{ URL::asset('img/volver.svg') }}" />Hoteles en
-            {{ $hotel->ciudad->nombre }}</a>
+        <a href="restaurante?query={{ $restaurante->ciudad->nombre }}" class="text-sm hover:underline"><img
+                class="inline-block w-5 mr-2" src="{{ URL::asset('img/volver.svg') }}" />Restaurantes en
+            {{ $restaurante->ciudad->nombre }}</a>
     </div>
 
 
     <div class="m-10 mt-5 mb-3 text-black">
-        <p class="uppercase text-4xl">{{ $hotel->nombre }}</p>
-        <p class="mt-2 text-lg">
+        <p class="uppercase text-4xl">{{ $restaurante->nombre }}</p>
+        <span class="mt-2 pr-2 text-lg border border-r-slate-500">
             @if ($numeroComentarios == 1)
-                <p>{{ $numeroComentarios }} opinión</p>
+                <span>{{ $numeroComentarios }} opinión</span>
             @else
-                <p>{{ $numeroComentarios }} opiniones</p>
+                <span>{{ $numeroComentarios }} opiniones</span>
             @endif
-        </p>
+        </span>
+        <span class="px-3 text-lg border border-r-slate-500"> {{ $restaurante->precio }}</span>
+        <span class="px-2 text-lg"> {{ $restaurante->tipoCocina }}</span>
         <p class="text-lg"><img class="inline-block w-5" src="{{ URL::asset('img/ubicacion.svg') }}" />
-            {{ $hotel->direccion }}, {{ $hotel->ciudad->nombre }}, {{ $hotel->ciudad->pais }}</p>
+            {{ $restaurante->direccion }}, {{ $restaurante->ciudad->nombre }}, {{ $restaurante->ciudad->pais }}</p>
+        <p class="text-lg"><img class="inline-block w-5" src="{{ URL::asset('img/telefono.svg') }}" />
+            {{ $restaurante->telefono }}</p>
     </div>
 
     <div class="flex justify-center">
         <div class="carousel w-2/5 mt-2">
             <div class="carousel-container">
                 <div class="slide">
-                    <img src="{{ $hotel->foto1 }}" alt="Imagen 1">
+                    <img src="{{ $restaurante->foto1 }}" alt="Imagen 1">
                 </div>
                 @for ($i = 2; $i <= 6; $i++)
-                    @if (!empty($hotel->{'foto' . $i}))
+                    @if (!empty($restaurante->{'foto' . $i}))
                         <div class="slide">
-                            <img src="{{ $hotel->{'foto' . $i} }}" alt="Imagen {{ $i }}">
+                            <img src="{{ $restaurante->{'foto' . $i} }}" alt="Imagen {{ $i }}">
                         </div>
                     @endif
                 @endfor
             </div>
             @if (
-                !empty($hotel->foto2) ||
-                    !empty($hotel->foto3) ||
-                    !empty($hotel->foto4) ||
-                    !empty($hotel->foto5) ||
-                    !empty($hotel->foto6))
+                !empty($restaurante->foto2) ||
+                    !empty($restaurante->foto3) ||
+                    !empty($restaurante->foto4) ||
+                    !empty($restaurante->foto5) ||
+                    !empty($restaurante->foto6))
                 <a class="prev" onclick="previousSlide()">&#10094;</a>
                 <a class="next" onclick="nextSlide()">&#10095;</a>
             @endif
@@ -183,12 +187,12 @@
     </div>
 
     <div class="flex mx-10 my-6">
-        <div class="w-2/4 p-4  bg-white mr-10 ">
+        <div class="w-1/3 p-4  bg-white mr-10 ">
             <div class="w-full h-16rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
             </div>
             @if ($numeroComentarios == 0)
-                <div class="ml-4">
+                 <div class="ml-4">
                     <p class="text-xl">Aún no hay valoraciones.</p>
                 </div>
             @else
@@ -210,11 +214,8 @@
                 </div>
                 <div class="text-xl mt-4">
                     <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaUbi / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaUbi / $numeroComentarios, 1) }} · Ubicación</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaLim / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaLim / $numeroComentarios, 1) }} · Limpieza</p>
+                            value="{{ $sumaCom / $numeroComentarios }}" max="10"></progress>
+                        {{ number_format($sumaCom / $numeroComentarios, 1) }} · Comida</p>
                     <p class="py-4 mx-4"><progress class="custom-progress mr-1"
                             value="{{ $sumaSer / $numeroComentarios }}" max="10"></progress>
                         {{ number_format($sumaSer / $numeroComentarios, 1) }} · Servicio</p>
@@ -226,12 +227,34 @@
 
             @endif
         </div>
-        <div class="w-2/4 p-4 bg-white ">
+        <div class="w-1/3 p-4 bg-white  mr-10">
             <div class="w-full h-16 rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
             </div>
             <div class="ml-4">
-                <p class="text-xl">{{ $hotel->descripcion }}</p>
+                <p class="text-xl">{{ $restaurante->descripcion }}</p>
+            </div>
+        </div>
+        <div class="w-1/3 p-4 bg-white ">
+            <div class="w-full h-16 rounded-md mb-6">
+                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Detalles</p>
+            </div>
+            <div class="ml-4">
+                <p class="text-lg font-bold uppercase">Rango de precios</p>
+                @if ($restaurante->precio == '€')
+                    <p class="text-lg">Menos de 10€</p>
+                @elseif($restaurante->precio == '€€')
+                    <p class="text-lg">Entre 10€ y 20€</p>
+                @elseif($restaurante->precio == '€€€')
+                    <p class="text-lg">Entre 20€ y 30€</p>
+                @elseif($restaurante->precio == '€€€€')
+                    <p class="text-lg">Más de 30€</p>
+                @endif
+                <p class="text-xs">*Por persona</p>
+            </div>
+            <div class="ml-4 mt-4">
+                <p class="text-lg font-bold uppercase">Tipo de comida</p>
+                <p class="text-lg">{{$restaurante->tipoCocina}}</p>
             </div>
         </div>
     </div>
@@ -242,20 +265,21 @@
             <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Opiniones</p>
         </div>
         @if ($numeroComentarios > 0)
-            @foreach ($hotelVisitado as $visitado)
-                <div class="mx-4 mb-4">
-                    <p class="text-xl"><img class="inline-block w-12 mr-2"
-                            src="{{ URL::asset('img/user.svg') }}" />{{ $visitado->usuario->name }}</p>
-                    <p class="text-lg ml-16">{{ $visitado->comentario }}</p>
+            @foreach ($restauranteVisitado as $visitado)
+                <div class="w-full h-16 rounded-md mb-6">
+                    <div class="mx-4">
+                        <p class="text-xl"><img class="inline-block w-12 mr-2"
+                                src="{{ URL::asset('img/user.svg') }}" />{{ $visitado->usuario->name }}</p>
+                        <p class="text-lg ml-16">{{ $visitado->comentario }}</p>
+                    </div>
                 </div>
             @endforeach
         @else
             <div class="mx-4 mb-4">
                 <p class="text-xl"> Aún no hay opiniones. </p>
             </div>
-        @endif
     </div>
-
+    @endif
 </body>
 
 </html>

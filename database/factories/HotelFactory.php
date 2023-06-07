@@ -27,7 +27,7 @@ class HotelFactory extends Factory
             'valSer' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 10),
             'valCalPre' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 10),
             'foto1' => fake()->imageUrl($width = 640, $height = 480),
-            'idCiudad' => fake()->numberBetween(1,30),
+            'idCiudad' => fake()->numberBetween(1,15),
         ];
     }
 }

@@ -55,12 +55,17 @@
                     <div class="max-w-sm rounded overflow-hidden shadow-lg relative">
                         <img class="w-full" src="{{ $restaurante->foto1 }}" alt="Imagen 1">
                         <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">{{ $i + 1 }}. {{ $restaurante->nombre }}</div>
+                            <a class="cursor-pointer hover:font-bold hover:underline"
+                                href="/restauranteDetallado?query={{ $restaurante->nombre }}">
+                                <div class="text-xl mb-2">{{ $i + 1 }}. {{ $restaurante->nombre }}</div>
+                            </a>
                             <span class="text-base">{{ $restaurante->tipoCocina }} · </span>
                             <span class="text-lg">{{ $restaurante->precio }}</span>
-                            <p class="text-2xl text-white rounded-lg bg-slate-400 p-1 w-fit absolute bottom-4 right-4">
-                                {{ number_format($restaurante->media, 1) }}
-                            </p>
+                            @if ($restaurante->media > 0)
+                                    <p class="text-2xl text-white rounded-lg bg-slate-400 p-1 w-fit absolute bottom-4 right-4">
+                                        {{ number_format($restaurante->media, 1) }}
+                                    </p>
+                            @endif
                         </div>
                     </div>
                 @endforeach

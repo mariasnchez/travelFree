@@ -22,8 +22,8 @@ class RestauranteVisitadoFactory extends Factory
             'punSer' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 10),
             'punCalPre' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 10),
             'comentario' => fake()->text($maxNbChars = 200),
-            'idUsu' => fake()->numberBetween(1,15),
-            'idRes' => fake()->numberBetween(1,300),
+            'idUsu' => fake()->numberBetween(1,10),
+            'idRes' => fake()->numberBetween(1,150),
         ];
     }
 }
