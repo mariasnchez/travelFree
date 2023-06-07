@@ -227,12 +227,26 @@
             @endif
         </div>
         <div class="w-2/4 p-4 bg-white ">
-            <div class="w-full h-16 rounded-md mb-6">
+            <div class="w-full rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
             </div>
             <div class="ml-4">
                 <p class="text-xl">{{ $hotel->descripcion }}</p>
             </div>
+            <div class="w-full rounded-md mb-6">
+                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 mb-">Precio por noche</p>
+                <div class="ml-4 mt-4">
+                    @if ($hotel->ofertas->count() > 0)
+                        <span class="text-lg line-through">{{ $hotel->precio }}€ </span><span
+                            class="text-3xl font-bold text-green-700">&nbsp{{ $hotel->ofertas[0]->precioOferta }}€</span>
+                    @else
+                        <span
+                            class="text-2xl font-bold">{{ $hotel->precio }}€</span>
+                    @endif
+                </div>
+            </div>
+
+
         </div>
     </div>
 
