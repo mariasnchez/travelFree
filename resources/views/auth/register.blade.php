@@ -33,7 +33,8 @@
 <body class="bg-[#ECECEC]">
     <div class="m-10">
         <div class="mb-4 flex justify-between items-center">
-            <img class="inline-block w-16" src="{{ URL::asset('img/logo.svg') }}" />
+            <a class="cursor-pointer" href="ofertas"><img class="inline-block w-16"
+                    src="{{ URL::asset('img/logo.svg') }}" /></a>
             <a class="border border-slate-600 p-2 text-lg text-slate-600 hover:bg-slate-100 hover:text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}">
                 {{ __('¿Ya registrado?') }}

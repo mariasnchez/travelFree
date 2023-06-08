@@ -126,8 +126,22 @@
     <div class="grid place-items-center h-60 bg-image bg-cover">
         <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
         <div>
-            <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
-                href="{{ route('login') }}">{{ __('Login') }}</a>
+            @if (Auth::check())
+                <div>
+                    <img class="absolute m-6 left-0 top-0 w-10" src="{{ URL::asset('img/user.png') }}">
+                    <p class="absolute m-8 left-10 top-0 w-40 text-white">{{ Auth::user()->name }}</p>
+                    <form action="{{ route('logout') }}" method="POST" class="absolute m-6 top-0 right-0">
+                        @csrf
+                        <button type="submit"
+                            class="bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded">
+                            {{ __('Logout') }}
+                        </button>
+                    </form>
+                </div>
+            @else
+                <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                    href="{{ route('login') }}">{{ __('Login') }}</a>
+            @endif
         </div>
 
         <h1 class="absolute text-9xl text-white">
@@ -192,7 +206,7 @@
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
             </div>
             @if ($numeroComentarios == 0)
-                 <div class="ml-4">
+                <div class="ml-4">
                     <p class="text-xl">Aún no hay valoraciones.</p>
                 </div>
             @else
@@ -254,7 +268,7 @@
             </div>
             <div class="ml-4 mt-4">
                 <p class="text-lg font-bold uppercase">Tipo de comida</p>
-                <p class="text-lg">{{$restaurante->tipoCocina}}</p>
+                <p class="text-lg">{{ $restaurante->tipoCocina }}</p>
             </div>
         </div>
     </div>

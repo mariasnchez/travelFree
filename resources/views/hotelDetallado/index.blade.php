@@ -126,8 +126,22 @@
     <div class="grid place-items-center h-60 bg-image bg-cover">
         <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
         <div>
-            <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
-                href="{{ route('login') }}">{{ __('Login') }}</a>
+            @if (Auth::check())
+                <div>
+                    <img class="absolute m-6 left-0 top-0 w-10" src="{{ URL::asset('img/user.png') }}">
+                    <p class="absolute m-8 left-10 top-0 w-40 text-white">{{ Auth::user()->name }}</p>
+                    <form action="{{ route('logout') }}" method="POST" class="absolute m-6 top-0 right-0">
+                        @csrf
+                        <button type="submit"
+                            class="bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded">
+                            {{ __('Logout') }}
+                        </button>
+                    </form>
+                </div>
+            @else
+                <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                    href="{{ route('login') }}">{{ __('Login') }}</a>
+            @endif
         </div>
 
         <h1 class="absolute text-9xl text-white">
@@ -240,8 +254,7 @@
                         <span class="text-lg line-through">{{ $hotel->precio }}€ </span><span
                             class="text-3xl font-bold text-green-700">&nbsp{{ $hotel->ofertas[0]->precioOferta }}€</span>
                     @else
-                        <span
-                            class="text-2xl font-bold">{{ $hotel->precio }}€</span>
+                        <span class="text-2xl font-bold">{{ $hotel->precio }}€</span>
                     @endif
                 </div>
             </div>
