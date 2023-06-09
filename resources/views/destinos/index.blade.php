@@ -18,9 +18,8 @@
   }
 </style>
 </head>
-<body  class="bg-cyan-700" >
-    
-    
+<body  class="bg-[#ECECEC]" >
+
     <div class= "grid place-items-center h-80 bg-image bg-cover" >
     <div class="absolute inset-0 bg-black opacity-40 h-80"></div>
             <div >

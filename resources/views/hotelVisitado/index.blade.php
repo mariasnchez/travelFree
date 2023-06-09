@@ -3,67 +3,112 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>TravelFree</title>
     <style>
-  .bg-image {
-    background-image: url('{{ asset('img/cabecera.jpg') }}');
-  }
-</style>
+        .bg-image {
+            background-image: url('{{ asset('img/cabecera.jpg') }}');
+        }
+    </style>
 </head>
-<body  class="bg-cyan-700" >
-    
-    
-    <div class= "grid place-items-center h-80 bg-image bg-cover" >
-    <div class="absolute inset-0 bg-black opacity-40 h-80"></div>
-            <div >
-               <img class="absolute m-6 left-0 top-0 w-10 " src="{{URL::asset('img/user.png')}}"> <p class="absolute m-8 left-10 top-0 w-40  text-white "> {{ Auth::user()->name }} </a>
+
+<body class="bg-[#ECECEC]">
+    <div class="m-10">
+        <div class="mb-4 flex justify-between items-center">
+            <a class="cursor-pointer" href="ofertas"><img class="inline-block w-16"
+                    src="{{ URL::asset('img/logo.svg') }}" /></a>
+            <a class="top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+        </div>
+        <div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
+        </div>
+        <div class="container m-10">
+            <div class="text-6xl text-[#727272] mb-10">
+                <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
             </div>
-            
-            <div >
-                <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+
+            <div class="text-2xl text-[#4B4B4B]">
+                <p class="font-bold inline-block border-b-4 border-b-[#4B4B4B] pb-3">Hoteles</p>
+                <a href="restauranteVisitado">
+                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Restaurantes</p>
+                </a>
+                <a href="opiniones">
+                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Opiniones</p>
+                </a>
+                <a href="perfil">
+                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Mi perfil</p>
+                </a>
             </div>
-            <div >
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
+
+            <div class="mt-10 text-black">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-4xl uppercase">Hoteles visitados</h1>
+                    <h1 class="cursor-pointer hover:text-slate-600 text-xl uppercase"><img class="w-7 mr-2 inline-block"
+                            src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
+                </div>
+                @foreach ($hotelVisitado as $visitado)
+                    @if ($visitado->idUsu == Auth::user()->idUsu)
+                        <div class="flex bg-white my-6 shadow-lg flex-wrap justify-center">
+                            <div class="grid grid-cols-2 gap-3 ml-3 relative p-6">
+                                <div>
+                                    <div class="nombre mb-3">
+                                        <a href="/hotelDetallado?query={{ $visitado->hotel->nombre }}">
+                                            <p class="text-2xl font-bold uppercase hover:underline cursor-pointer">
+                                                {{ $visitado->hotel->nombre }}, {{ $visitado->hotel->ciudad->nombre }}
+                                            </p>
+                                        </a>
+                                    </div>
+                                    <div class="fecha">
+                                        <p class="text-lg uppercase">Fecha</p>
+                                        <p class="text-base">
+                                            {{ date('d/m/y', strtotime($visitado->fechaEntrada)) }} -
+                                            {{ date('d/m/y', strtotime($visitado->fechaEntrada)) }}
+                                        </p>
+                                    </div>
+                                    <div class="comentario mt-3">
+                                        <p class="text-lg uppercase">Comentario</p>
+                                        <p class="text-base">{{ $visitado->comentario }} </p>
+                                    </div>
+                                </div>
+                                <div class="valoracion ml-3 mt-11">
+                                    <p class="text-lg uppercase">Valoración</p>
+                                    <p class="text-base">Ubicación · {{ $visitado->punUbi }} </p>
+                                    <p class="text-base">Limpieza · {{ $visitado->punLim }} </p>
+                                    <p class="text-base">Servicio · {{ $visitado->punSer }} </p>
+                                    <p class="text-base">Calidad-Precio · {{ $visitado->punCalPre }} </p>
+                                </div>
+                                <div class="absolute top-3 right-6 flex flex-col justify-end mr-3 mt-3">
+                                    <div class="editar">
+                                        <p
+                                            class="cursor-pointer text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center">
+                                            <img class="w-7 inline-block" src="{{ URL::asset('img/editar.svg') }}" />
+                                            &nbspEditar
+                                        </p>
+                                    </div>
+                                    <div class="Borrar mt-3">
+                                        <p
+                                            class="cursor-pointer text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center">
+                                            <img class="w-7 inline-block" src="{{ URL::asset('img/basura.svg') }}" />
+                                            &nbspBorrar
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
-        <h1 class="absolute text-9xl text-white">TravelFree<img class="inline-block w-28 " src="{{URL::asset('img/logo.svg')}}"></h1>
+        </div>
     </div>
 
 
-    <div class="grid place-items-center bg-cyan-700">
-        <div class="grid place-items-end bg-white mb-10 rounded-lg bg-cyan-50">
-        <table class="text-center mb-10 ml-10 mr-10">
-                    <thbody class="border border-gray-400">
-                            @foreach ($hotelVisitado as $hotelVisitado)
-                            <?php
-                                if ($hotelVisitado->idUsu== Auth::user()->idUsu ) {
-                                ?>
-                                    <tr class="border border-gray-400">
-                                         <!-- Estos son valores de la tabla hotel que pertenecen al usuario correspondiente de la tabla hotel_visitado  -->
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->hotel["nombre"] }}</td>
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->hotel["direccion"] }}</td>
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->hotel["descripcion"] }}</td>
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->hotel["precio"] }}</td>
-
-
-                                        <!-- Y estos son valores de la tabla hotel_visitado   -->
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->fechaEntrada }}</td>
-                                        <td  class="px-4 py-2">{{ $hotelVisitado->punUbi }}</td>
-
-                                    <tr>
-                                    <?php } ?>
-                                
-                            @endforeach
-                    <thbody>    
-            </table>
-        </div>
-     </div>
-
 </body>
+
 </html>
-
-

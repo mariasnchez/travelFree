@@ -20,10 +20,12 @@
     <div class="grid place-items-center h-60 bg-image bg-cover">
         <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
         <div>
-            @if (Auth::check())
+             @if (Auth::check())
                 <div>
-                    <img class="absolute m-6 left-0 top-0 w-10" src="{{ URL::asset('img/user.png') }}">
-                    <p class="absolute m-8 left-10 top-0 w-40 text-white">{{ Auth::user()->name }}</p>
+                    <a class="cursor-pointer" href="hotelVisitado"><img class="absolute m-6 left-0 top-0 w-10"
+                            src="{{ URL::asset('img/user.png') }}">
+                        <p class="absolute m-8 left-10 top-0 w-40 text-lg text-white hover:underline">{{ Auth::user()->name }}</p>
+                    </a>
                     <form action="{{ route('logout') }}" method="POST" class="absolute m-6 top-0 right-0">
                         @csrf
                         <button type="submit"
