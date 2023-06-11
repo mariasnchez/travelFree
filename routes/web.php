@@ -10,6 +10,7 @@ use App\Http\Controllers\HotelDetalladoController;
 use App\Http\Controllers\RestauranteDetalladoController;
 use App\Http\Controllers\HotelVisitadoController;
 use App\Http\Controllers\RestauranteVisitadoController;
+use App\Http\Controllers\OpinionesController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -31,6 +32,8 @@ Route::resource('/hotelDetallado', HotelDetalladoController::class);
 Route::resource('/restauranteDetallado', RestauranteDetalladoController::class);
 Route::resource('/hotelVisitado', HotelVisitadoController::class)->middleware('auth');
 Route::resource('/restauranteVisitado', RestauranteVisitadoController::class)->middleware('auth');
+Route::resource('/opiniones', OpinionesController::class)->middleware('auth');
+
 
 
 Route::get('/dashboard', function () {
