@@ -11,6 +11,7 @@ use App\Http\Controllers\RestauranteDetalladoController;
 use App\Http\Controllers\HotelVisitadoController;
 use App\Http\Controllers\RestauranteVisitadoController;
 use App\Http\Controllers\OpinionesController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -33,6 +34,7 @@ Route::resource('/restauranteDetallado', RestauranteDetalladoController::class);
 Route::resource('/hotelVisitado', HotelVisitadoController::class)->middleware('auth');
 Route::resource('/restauranteVisitado', RestauranteVisitadoController::class)->middleware('auth');
 Route::resource('/opiniones', OpinionesController::class)->middleware('auth');
+Route::resource('/perfil', PerfilController::class)->middleware('auth');
 
 
 
@@ -45,6 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/perfil/{idUsu}/{accion}', [PerfilController::class, 'edit'])->name('perfil.edit');
+Route::post('/actualizar', [PerfilController::class, 'actualizar'])->name('actualizar');
+
 
 
 

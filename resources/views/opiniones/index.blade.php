@@ -57,7 +57,7 @@
                     @else
                         <div class="grid grid-cols-3 gap-4">
                             @foreach ($opiniones as $opinion)
-                                <div class="bg-white p-4 relative">
+                                <div class="bg-white p-4 relative m-1 shadow-lg">
                                     <div class="uppercase font-bold text-lg">
                                         @if ($opinion->tipo === 'hotel')
                                             <a href="/hotelDetallado?query={{ $opinion->nombre }}">
@@ -74,7 +74,7 @@
                                         @endif
                                     </div>
                                     <p class="mt-1">{{ $opinion->comentario }}</p>
-                                    <p class="absolute bottom-0 right-0 mb-1 mr-1 text-xs">{{ date('d/m/y', strtotime( $opinion->fecha)) }}<p>
+                                    <p class="absolute bottom-0 right-0 mb-1 mr-2 text-xs">{{ date('d/m/y', strtotime( $opinion->fecha)) }}<p>
                                 </div>
                             @endforeach
 
