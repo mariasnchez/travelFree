@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -50,60 +50,75 @@
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
                     <h1 class="text-4xl uppercase">Hoteles visitados</h1>
-                    <h1 class="cursor-pointer hover:text-slate-600 text-xl uppercase"><img class="w-7 mr-2 inline-block"
-                            src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
+                    <a href="{{ URL::to('hotelVisitado/create') }}">
+                        <h1 class="cursor-pointer hover:text-slate-600 text-xl uppercase"><img
+                                class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
+                    </a>
                 </div>
-                @foreach ($hotelVisitado as $visitado)
-                    @if ($visitado->idUsu == Auth::user()->idUsu)
-                        <div class="flex bg-white my-6 shadow-lg flex-wrap justify-center">
-                            <div class="grid grid-cols-2 gap-3 ml-3 relative p-6">
-                                <div>
-                                    <div class="nombre mb-3">
-                                        <a href="/hotelDetallado?query={{ $visitado->hotel->nombre }}">
-                                            <p class="text-2xl font-bold uppercase hover:underline cursor-pointer">
-                                                {{ $visitado->hotel->nombre }}, {{ $visitado->hotel->ciudad->nombre }}
+                @if ($hotelVisitadoUsuario->count() === 0)
+                    <p class="text-lg mt-2">Aún no hay ningún hotel visitado.</p>
+                @else
+                    @foreach ($hotelVisitado as $hotelVisitado)
+                        @if ($hotelVisitado->idUsu == Auth::user()->idUsu)
+                            <div class=" bg-white my-6 shadow-lg flex-wrap justify-start">
+                                <div class="grid grid-cols-2 gap-2 ml-3 relative p-6">
+                                    <div>
+                                        <div class="nombre mb-3">
+                                            <a href="/hotelDetallado?query={{ $hotelVisitado->hotel->nombre }}">
+                                                <p class="text-2xl font-bold uppercase hover:underline cursor-pointer">
+                                                    {{ $hotelVisitado->hotel->nombre }},
+                                                    {{ $hotelVisitado->hotel->ciudad->nombre }}
+                                                </p>
+                                            </a>
+                                        </div>
+                                        <div class="fecha">
+                                            <p class="text-lg uppercase">Fecha</p>
+                                            <p class="text-base">
+                                                {{ date('d/m/y', strtotime($hotelVisitado->fechaEntrada)) }} -
+                                                {{ date('d/m/y', strtotime($hotelVisitado->fechaSalida)) }}
                                             </p>
-                                        </a>
+                                        </div>
+                                        <div class="comentario mt-3">
+                                            <p class="text-lg uppercase">Comentario</p>
+                                            <p class="text-base">{{ $hotelVisitado->comentario }} </p>
+                                        </div>
                                     </div>
-                                    <div class="fecha">
-                                        <p class="text-lg uppercase">Fecha</p>
-                                        <p class="text-base">
-                                            {{ date('d/m/y', strtotime($visitado->fechaEntrada)) }} -
-                                            {{ date('d/m/y', strtotime($visitado->fechaEntrada)) }}
-                                        </p>
+                                    <div class="valoracion ml-3 mt-11">
+                                        <p class="text-lg uppercase">Valoración</p>
+                                        <p class="text-base">Ubicación · {{ $hotelVisitado->punUbi }} </p>
+                                        <p class="text-base">Limpieza · {{ $hotelVisitado->punLim }} </p>
+                                        <p class="text-base">Servicio · {{ $hotelVisitado->punSer }} </p>
+                                        <p class="text-base">Calidad-Precio · {{ $hotelVisitado->punCalPre }} </p>
                                     </div>
-                                    <div class="comentario mt-3">
-                                        <p class="text-lg uppercase">Comentario</p>
-                                        <p class="text-base">{{ $visitado->comentario }} </p>
-                                    </div>
-                                </div>
-                                <div class="valoracion ml-3 mt-11">
-                                    <p class="text-lg uppercase">Valoración</p>
-                                    <p class="text-base">Ubicación · {{ $visitado->punUbi }} </p>
-                                    <p class="text-base">Limpieza · {{ $visitado->punLim }} </p>
-                                    <p class="text-base">Servicio · {{ $visitado->punSer }} </p>
-                                    <p class="text-base">Calidad-Precio · {{ $visitado->punCalPre }} </p>
-                                </div>
-                                <div class="absolute top-3 right-6 flex flex-col justify-end mr-3 mt-3">
-                                    <div class="editar">
-                                        <p
-                                            class="cursor-pointer text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center">
-                                            <img class="w-7 inline-block" src="{{ URL::asset('img/editar.svg') }}" />
-                                            &nbspEditar
-                                        </p>
-                                    </div>
-                                    <div class="Borrar mt-3">
-                                        <p
-                                            class="cursor-pointer text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center">
-                                            <img class="w-7 inline-block" src="{{ URL::asset('img/basura.svg') }}" />
-                                            &nbspBorrar
-                                        </p>
+                                    <div class="absolute top-3 right-6 flex flex-col justify-end mr-3 mt-3">
+                                        <form action="{{ route('hotelVisitado.destroy', $hotelVisitado->idHotVis) }}"
+                                            method="POST">
+                                            <a href="{{ route('hotelVisitado.edit', $hotelVisitado->idHotVis) }}">
+                                                <p
+                                                    class="cursor-pointer text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center">
+                                                    <img class="w-7 inline-block"
+                                                        src="{{ URL::asset('img/editar.svg') }}" />
+                                                    &nbspEditar
+                                                </p>
+                                            </a>
+
+                                            @csrf
+                                            @method('DELETE')
+                                            <td> <button type="submit" class="mt-3">
+                                                    <p
+                                                        class="cursor-pointer text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center">
+                                                        <img class="w-7 inline-block"
+                                                            src="{{ URL::asset('img/basura.svg') }}" />
+                                                        &nbspBorrar
+                                                    </p>
+                                                </button> </td>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
