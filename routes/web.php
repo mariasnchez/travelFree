@@ -12,7 +12,9 @@ use App\Http\Controllers\HotelVisitadoController;
 use App\Http\Controllers\RestauranteVisitadoController;
 use App\Http\Controllers\OpinionesController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
+
 
 
 Route::get('/', [App\Http\Controllers\OfertaController::class, 'index']);
@@ -38,6 +40,7 @@ Route::resource('/perfil', PerfilController::class)->middleware('auth');
 
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -53,6 +56,42 @@ Route::post('/actualizar', [PerfilController::class, 'actualizar'])->name('actua
 
 
 
+Route::get('/admin', function() {
 
+    return view('users.index');
+
+})->name('admin.index')->middleware('canAccess');
+
+
+Route::middleware('canAccess')->group(function () {
+
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::get('/users/hoteles', [UsersController::class, 'hotel'])->name('users.hotel.index');;
+Route::get('/users/restaurantes', [UsersController::class, 'restaurante'])->name('users.restaurante.index');
+Route::get('/users/ofertas', [UsersController::class, 'oferta'])->name('users.oferta.index');;
+Route::get('/users/ciudades', [UsersController::class, 'ciudad'])->name('users.ciudad.index');
+
+
+Route::get('/users/restaurante/{restaurante}/edit', [RestauranteController::class, 'edit'])->name('users.restaurante.edit');
+Route::put('/users/restaurante/{idRes}', [RestauranteController::class, 'update'])->name('users.restaurante.update');
+Route::get('/users/restaurante/create', [RestauranteController::class, 'create'])->name('users.restaurante.create');
+Route::match(['post', 'put'], '/users/restaurante', [RestauranteController::class, 'store'])->name('users.restaurante.store');
+
+Route::get('/users/ciudad/{ciudad}/edit', [CiudadController::class, 'edit'])->name('users.ciudad.edit');
+Route::put('/users/ciudad/{idCiudad}', [CiudadController::class, 'update'])->name('users.ciudad.update');
+Route::get('/users/ciudad/create', [CiudadController::class, 'create'])->name('users.ciudad.create');
+Route::match(['post', 'put'], '/users/ciudad', [CiudadController::class, 'store'])->name('users.ciudad.store');
+
+
+Route::get('/users/hotel/{hotel}/edit', [HotelController::class, 'edit'])->name('users.hotel.edit');
+Route::put('/users/hotel/{idHotel}', [HotelController::class, 'update'])->name('users.hotel.update');
+Route::get('/users/hotel/create', [HotelController::class, 'create'])->name('users.hotel.create');
+Route::match(['post', 'put'], '/users/hotel', [HotelController::class, 'store'])->name('users.hotel.store');
+
+Route::get('/users/oferta/{oferta}/edit', [OfertaController::class, 'edit'])->name('users.oferta.edit');
+Route::put('/users/oferta/{idOferta}', [OfertaController::class, 'update'])->name('users.oferta.update');
+Route::get('/users/oferta/create', [OfertaController::class, 'create'])->name('users.oferta.create');
+Route::match(['post', 'put'], '/users/oferta', [OfertaController::class, 'store'])->name('users.oferta.store');
+});
 
 require __DIR__.'/auth.php';

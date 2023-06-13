@@ -7,16 +7,23 @@ use App\Models\Restaurante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class RestauranteVisitadoController extends Controller
 {
     public function index()
     {
+        $nombre = Auth::user()->name;
+        $email = Auth::user()->email;
+
         $restauranteVisitado = RestauranteVisitado::all();
-        $restauranteVisitadoUsuario = $restauranteVisitado->where('idUsu', Auth::user()->idUsu);
+        $restauranteVisitadoUsuario = $restauranteVisitado->where(
+            "idUsu",
+            Auth::user()->idUsu
+        );
 
-
-        return view('restauranteVisitado.index', compact('restauranteVisitado', 'restauranteVisitadoUsuario'));
+        return view(
+            "restauranteVisitado.index",
+            compact("restauranteVisitado", "restauranteVisitadoUsuario")
+        );
     }
 
     public function destroy($id)
@@ -31,14 +38,12 @@ class RestauranteVisitadoController extends Controller
             );
     }
 
-
     public function edit($idResVis)
-{
-    $restauranteVisitado = RestauranteVisitado::find($idResVis);
+    {
+        $restauranteVisitado = RestauranteVisitado::find($idResVis);
 
-    return view("restauranteVisitado.edit", compact("restauranteVisitado"));
-}
-
+        return view("restauranteVisitado.edit", compact("restauranteVisitado"));
+    }
 
     public function update(Request $request, $idResVis)
     {
@@ -70,7 +75,10 @@ class RestauranteVisitadoController extends Controller
 
     public function store(Request $request)
     {
-        $restaurante = Restaurante::where("nombre", $request->input('restaurante'))->first();
+        $restaurante = Restaurante::where(
+            "nombre",
+            $request->input("restaurante")
+        )->first();
 
         $restauranteVisitado = new RestauranteVisitado();
         $restauranteVisitado->fechaVisita = $request->input("fechaVisita");
@@ -85,6 +93,9 @@ class RestauranteVisitadoController extends Controller
 
         return redirect()
             ->route("restauranteVisitado.index")
-            ->with("success", "El restaurante ha sido actualizado correctamente");
+            ->with(
+                "success",
+                "El restaurante ha sido actualizado correctamente"
+            );
     }
 }

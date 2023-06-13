@@ -14,26 +14,34 @@ class RestauranteVisitado extends Model
     protected $primaryKey = "idResVis";
 
     static $rules = [
-		'fechaVisita' => 'required',
-		'punCom' => 'required', 
-		'punSer' => 'required', 
-		'punCalPre' => 'required', 
-        'comentario' => 'required', 
-        'idUsu' => 'required', 
-        'idRes' => 'required', 
+        "fechaVisita" => "required",
+        "punCom" => "required",
+        "punSer" => "required",
+        "punCalPre" => "required",
+        "comentario" => "required",
+        "idUsu" => "required",
+        "idRes" => "required",
     ];
 
     protected $perPage = 20;
 
-    protected $fillable = ['fechaVisita', 'punCom', 'punSer', 'punCalPre', 'comentario', 'idUsu', 'idRes'];
+    protected $fillable = [
+        "fechaVisita",
+        "punCom",
+        "punSer",
+        "punCalPre",
+        "comentario",
+        "idUsu",
+        "idRes",
+    ];
 
     public function restaurante()
     {
-        return $this->belongsTo('App\Models\Restaurante', 'idRes', 'idRes');
+        return $this->belongsTo("App\Models\Restaurante", "idRes", "idRes");
     }
 
     public function usuario()
     {
-        return $this->belongsTo('App\Models\User', 'idUsu', 'idUsu');
+        return $this->belongsTo("App\Models\User", "idUsu", "idUsu");
     }
 }

@@ -47,5 +47,55 @@ class HotelController extends Controller
 
         return view('hotel.index', compact('hoteles', 'query', 'total', 'ciudad'));
     }
+
+    public function edit(Hotel $hotel)
+    {
+        return view("users.hotel.edit", compact("hotel"));
+    }
+
+    public function update(Request $request, $idHotel)
+    {
+        $hotel = Hotel::findOrFail($idHotel);
+        $hotel->nombre = $request->input("nombre");
+        $hotel->direccion = $request->input("direccion");
+        $hotel->descripcion = $request->input("descripcion");
+        $hotel->precio = $request->input("precio");
+        $hotel->foto1 = $request->input("foto1");
+        $hotel->foto2 = $request->input("foto2");
+        $hotel->foto3 = $request->input("foto3");
+        $hotel->foto4 = $request->input("foto4");
+        $hotel->idCiudad = $request->input("idCiudad");
+
+        $hotel->save();
+
+        return redirect()
+            ->route("users.hotel.index")
+            ->with("success", "Hotel actualizado exitosamente");
+    }
+
+    public function create()
+    {
+        return view("users.hotel.create");
+    }
+
+    public function store(Request $request)
+    {
+        $hotel = new Hotel();
+        $hotel->nombre = $request->input("nombre");
+        $hotel->direccion = $request->input("direccion");
+        $hotel->descripcion = $request->input("descripcion");
+        $hotel->precio = $request->input("precio");
+        $hotel->foto1 = $request->input("foto1");
+        $hotel->foto2 = $request->input("foto2");
+        $hotel->foto3 = $request->input("foto3");
+        $hotel->foto4 = $request->input("foto4");
+        $hotel->idCiudad = $request->input("idCiudad");
+
+        $hotel->save();
+
+        return redirect()
+            ->route("users.hotel.index")
+            ->with("success", "Hotel añadido exitosamente");
+    }
 }
 

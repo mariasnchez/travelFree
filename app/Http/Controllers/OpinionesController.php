@@ -11,6 +11,9 @@ class OpinionesController extends Controller
 {
     public function index()
     {
+        $nombre = Auth::user()->name;
+        $email = Auth::user()->email;
+
         $hotelVisitadoUsuario = HotelVisitado::with("hotel")
             ->where("idUsu", Auth::user()->idUsu)
             ->select(
@@ -54,7 +57,6 @@ class OpinionesController extends Controller
                 }
                 return $opinion;
             });
-
-        return view("opiniones.index", compact("opiniones"));
+            return view("opiniones.index", compact("opiniones"));
     }
 }

@@ -17,11 +17,6 @@ return new class extends Migration
             $table->string('direccion');
             $table->text('descripcion');
             $table->integer('precio');
-            $table->decimal('valoracion', 3, 1);
-            $table->decimal('valUbi', 3, 1);
-            $table->decimal('valLim', 3, 1);
-            $table->decimal('valSer', 3, 1);
-            $table->decimal('valCalPre', 3, 1);
             $table->string('foto1');
             $table->string('foto2')->nullable();
             $table->string('foto3')->nullable();

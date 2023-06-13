@@ -10,11 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
-        }
-    </style>
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -22,9 +18,17 @@
         <div class="mb-4 flex justify-between items-center">
             <a class="cursor-pointer" href="ofertas"><img class="inline-block w-16"
                     src="{{ URL::asset('img/logo.svg') }}" /></a>
-            <a class="top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
-                href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+            <div>
+                @if (Auth::user()->admin == 1)
+                    <a class="top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                        href="{{ route('admin.index') }}">
+
+                        Acceder a Admin</a>
+                @endif
+                <a class="top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                    href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+            </div>
         </div>
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>

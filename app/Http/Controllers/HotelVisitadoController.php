@@ -11,11 +11,20 @@ class HotelVisitadoController extends Controller
 {
     public function index()
     {
+        $nombre = Auth::user()->name;
+        $email = Auth::user()->email;
+
         $hotelVisitado = HotelVisitado::all();
-        $hotelVisitadoUsuario = $hotelVisitado->where('idUsu', Auth::user()->idUsu);
+        $hotelVisitadoUsuario = $hotelVisitado->where(
+            "idUsu",
+            Auth::user()->idUsu
+        );
 
-
-        return view("hotelVisitado.index", compact("hotelVisitado", "hotelVisitadoUsuario"));
+            return view(
+                "hotelVisitado.index",
+                compact("hotelVisitado", "hotelVisitadoUsuario")
+            );
+        
     }
 
     public function destroy($id)
@@ -66,7 +75,7 @@ class HotelVisitadoController extends Controller
 
     public function store(Request $request)
     {
-        $hotel = Hotel::where("nombre", $request->input('hotel'))->first();
+        $hotel = Hotel::where("nombre", $request->input("hotel"))->first();
 
         $hotelVisitado = new HotelVisitado();
         $hotelVisitado->fechaEntrada = $request->input("fechaEntrada");

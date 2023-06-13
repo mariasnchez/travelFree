@@ -41,6 +41,7 @@
                     {{ __('Registrarse') }}
                 </a>
             @endif
+            
         </div>
 
         <!-- Session Status -->

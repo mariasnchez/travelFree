@@ -56,7 +56,7 @@
                                     <div class="mb-4">
                                         <label for="fechaVisita" class="block uppercase font-bold mb-1">Fecha visita</label>
                                         <input type="date" name="fechaVisita" id="fechaVisita"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500">
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
                                     </div>
 
                                     <div>
@@ -65,7 +65,7 @@
                                                 comida</label>
                                             <input type="number" name="comida" id="comida"
                                                 class="border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
 
@@ -74,7 +74,7 @@
                                                 servicio</label>
                                             <input type="number" name="servicio" id="servicio"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
@@ -83,14 +83,14 @@
                                                 calidad-precio</label>
                                             <input type="number" name="calidadPrecio" id="calidadPrecio"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
                                             <label for="comentario"
                                                 class="block uppercase font-bold mb-1">Comentario</label>
                                             <textarea name="comentario" id="comentario"
-                                                class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"></textarea>
+                                                class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required></textarea>
                                         </div>
 
                                         <div>

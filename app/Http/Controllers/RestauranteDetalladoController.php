@@ -25,11 +25,6 @@ class RestauranteDetalladoController extends Controller
         $restaurante->idRes
     )->get();
 
-    $media =
-    ($restaurante->valCom +
-        $restaurante->valSer +
-        $restaurante->valCalPre) /
-    3;
 
     $sumaTotal = 0;
     $sumaCom = 0;
@@ -56,7 +51,6 @@ class RestauranteDetalladoController extends Controller
         "restauranteDetallado.index",
         compact(
             "restaurante", "numeroComentarios",
-            "media",
             "mediaRedondeada",
             "restauranteVisitado",
             "sumaCom",

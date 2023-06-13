@@ -57,14 +57,14 @@
                                         <label for="fechaEntrada" class="block uppercase font-bold mb-1">Fecha de
                                             entrada</label>
                                         <input type="date" name="fechaEntrada" id="fechaEntrada"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500">
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
                                     </div>
 
                                     <div class="mb-4">
                                         <label for="fechaSalida" class="block uppercase font-bold mb-1">Fecha de
                                             salida</label>
                                         <input type="date" name="fechaSalida" id="fechaSalida"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500">
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
                                     </div>
                                     <div>
                                         <div class="mb-4">
@@ -72,7 +72,7 @@
                                                 ubicación</label>
                                             <input type="number" name="ubicacion" id="ubicacion"
                                                 class="border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
@@ -80,7 +80,7 @@
                                                 limpieza</label>
                                             <input type="number" name="limpieza" id="limpieza"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
@@ -88,7 +88,7 @@
                                                 servicio</label>
                                             <input type="number" name="servicio" id="servicio"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
@@ -97,14 +97,14 @@
                                                 calidad-precio</label>
                                             <input type="number" name="calidadPrecio" id="calidadPrecio"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
-                                                min="0" max="10" step="0.1">
+                                                min="0" max="10" step="0.1" required>
                                         </div>
 
                                         <div class="mb-4">
                                             <label for="comentario"
                                                 class="block uppercase font-bold mb-1">Comentario</label>
                                             <textarea name="comentario" id="comentario"
-                                                class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"></textarea>
+                                                class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required></textarea>
                                         </div>
 
                                         <div>
