@@ -45,8 +45,11 @@
                 </a>
             </div>
             @foreach ($hoteles as $key => $hotel)
+                @php
+                    $numero = ($hoteles->currentPage() - 1) * $hoteles->perPage() + $key + 1;
+                @endphp
                 <div class="bg-white m-4 mt-2 p-4 grid grid-cols-8 gap-3 shadow">
-                    <p class="flex items-center ">{{ $key + 1 }}</p>
+                    <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $hotel->nombre }}</p>
                     <p class="flex items-center">{{ $hotel->direccion }}</p>
                     <p class="flex items-center">{{ $hotel->descripcion }}</p>
@@ -76,6 +79,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $hoteles->appends(request()->query())->links() }}
 
         </div>
     </div>

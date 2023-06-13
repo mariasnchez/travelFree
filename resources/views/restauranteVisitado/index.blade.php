@@ -59,10 +59,10 @@
                                 class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
                     </a>
                 </div>
-                @if ($restauranteVisitadoUsuario->count() === 0)
+                @if ($resVisitadoUsuario->count() === 0)
                     <p class="text-lg mt-2">Aún no hay ningún restaurante visitado.</p>
                 @else
-                    @foreach ($restauranteVisitado as $visitado)
+                    @foreach ($resVisitadoUsuario as $visitado)
                         @if ($visitado->idUsu == Auth::user()->idUsu)
                             <div class=" bg-white my-6 shadow-lg flex-wrap justify-start">
                                 <div class="grid grid-cols-2 gap-3 ml-3 relative p-6">
@@ -120,6 +120,8 @@
                             </div>
                         @endif
                     @endforeach
+                    {{ $resVisitadoUsuario->appends(request()->query())->links() }}
+
                 @endif
             </div>
         </div>

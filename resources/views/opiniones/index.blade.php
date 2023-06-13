@@ -60,11 +60,11 @@
                     <h1 class="text-4xl uppercase">Tus opiniones</h1>
                 </div>
                 <div class="mt-4">
-                    @if ($opiniones->count() === 0)
+                    @if ($opinionesPaginadas->count() === 0)
                         <p class="text-lg mt-2">Aún no hay ninguna opinion.</p>
                     @else
                         <div class="grid grid-cols-3 gap-4">
-                            @foreach ($opiniones as $opinion)
+                            @foreach ($opinionesPaginadas as $opinion)
                                 <div class="bg-white p-4 relative m-1 shadow-lg">
                                     <div class="uppercase font-bold text-lg">
                                         @if ($opinion->tipo === 'hotel')
@@ -89,6 +89,8 @@
                             @endforeach
 
                         </div>
+                        {{ $opinionesPaginadas->appends(request()->query())->links() }}
+
                     @endif
                 </div>
             </div>

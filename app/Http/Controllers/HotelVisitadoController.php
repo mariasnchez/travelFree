@@ -14,15 +14,11 @@ class HotelVisitadoController extends Controller
         $nombre = Auth::user()->name;
         $email = Auth::user()->email;
 
-        $hotelVisitado = HotelVisitado::all();
-        $hotelVisitadoUsuario = $hotelVisitado->where(
-            "idUsu",
-            Auth::user()->idUsu
-        );
+        $hotelVisitadoUsuario = HotelVisitado::where("idUsu", Auth::user()->idUsu)->paginate(7);
 
             return view(
                 "hotelVisitado.index",
-                compact("hotelVisitado", "hotelVisitadoUsuario")
+                compact("hotelVisitadoUsuario")
             );
         
     }

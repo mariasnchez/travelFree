@@ -22,7 +22,8 @@ class HotelController extends Controller
 
         $hoteles = Hotel::whereHas('ciudad', function ($queryBuilder) use ($query) {
             $queryBuilder->where('nombre', $query);
-        })->get();
+        })->paginate(10);
+
 
 
         $hoteles->each(function ($hotel) {
@@ -43,6 +44,7 @@ class HotelController extends Controller
         
             $hotel->media = $mediaRedondeada;
         });
+        
         
 
         return view('hotel.index', compact('hoteles', 'query', 'total', 'ciudad'));

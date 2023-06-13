@@ -68,7 +68,7 @@
                 @if ($hotelVisitadoUsuario->count() === 0)
                     <p class="text-lg mt-2">Aún no hay ningún hotel visitado.</p>
                 @else
-                    @foreach ($hotelVisitado as $hotelVisitado)
+                    @foreach ($hotelVisitadoUsuario as $hotelVisitado)
                         @if ($hotelVisitado->idUsu == Auth::user()->idUsu)
                             <div class=" bg-white my-6 shadow-lg flex-wrap justify-start">
                                 <div class="grid grid-cols-2 gap-2 ml-3 relative p-6">
@@ -128,6 +128,7 @@
                             </div>
                         @endif
                     @endforeach
+                    {{ $hotelVisitadoUsuario->appends(request()->query())->links() }}
                 @endif
             </div>
         </div>

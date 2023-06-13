@@ -14,15 +14,11 @@ class RestauranteVisitadoController extends Controller
         $nombre = Auth::user()->name;
         $email = Auth::user()->email;
 
-        $restauranteVisitado = RestauranteVisitado::all();
-        $restauranteVisitadoUsuario = $restauranteVisitado->where(
-            "idUsu",
-            Auth::user()->idUsu
-        );
+        $resVisitadoUsuario = RestauranteVisitado::where("idUsu", Auth::user()->idUsu)->paginate(7);
 
         return view(
             "restauranteVisitado.index",
-            compact("restauranteVisitado", "restauranteVisitadoUsuario")
+            compact("resVisitadoUsuario")
         );
     }
 

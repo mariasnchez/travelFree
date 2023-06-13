@@ -66,15 +66,18 @@
                 <p class="text-center"> filtros </p>
             </div>
         </div>
-        <div class="w-3/4">
+        <div class="w-3/4 mb-4">
             <div class="grid grid-cols-3 gap-4 p-4">
                 @foreach ($restaurantes as $i => $restaurante)
+                    @php
+                        $numeroRes = ($restaurantes->currentPage() - 1) * $restaurantes->perPage() + $i + 1;
+                    @endphp
                     <div class="max-w-sm rounded overflow-hidden shadow-lg relative">
                         <img class="w-full" src="{{ $restaurante->foto1 }}" alt="Imagen 1">
                         <div class="px-6 py-4">
                             <a class="cursor-pointer hover:font-bold hover:underline"
                                 href="/restauranteDetallado?query={{ $restaurante->nombre }}">
-                                <div class="text-xl mb-2">{{ $i + 1 }}. {{ $restaurante->nombre }}</div>
+                                <div class="text-xl mb-2">{{ $numeroRes }}. {{ $restaurante->nombre }}</div>
                             </a>
                             <span class="text-base">{{ $restaurante->tipoCocina }} · </span>
                             <span class="text-lg">{{ $restaurante->precio }}</span>
@@ -88,6 +91,8 @@
                     </div>
                 @endforeach
             </div>
+            {{ $restaurantes->appends(request()->query())->links() }}
+
         </div>
     </div>
 

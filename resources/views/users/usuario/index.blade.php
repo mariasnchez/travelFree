@@ -37,12 +37,16 @@
                 <p class="flex items-center">Email</p>
             </div>
             @foreach ($usuarios as $key => $usuario)
+                @php
+                    $numero = ($usuarios->currentPage() - 1) * $usuarios->perPage() + $key + 1;
+                @endphp
                 <div class="bg-white m-4 mt-2 p-4 grid grid-cols-3 gap-2 shadow">
-                    <p class="flex items-center ">{{ $key + 1 }}</p>
+                    <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $usuario->name }}</p>
                     <p class="flex items-center">{{ $usuario->email }}</p>
                 </div>
             @endforeach
+            {{ $usuarios->appends(request()->query())->links() }}
 
         </div>
     </div>

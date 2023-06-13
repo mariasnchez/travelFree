@@ -26,7 +26,7 @@ class RestauranteController extends Controller
             $queryBuilder
         ) use ($query) {
             $queryBuilder->where("nombre", $query);
-        })->get();
+        })->paginate(9);
 
         $restaurantes->each(function ($restaurante) {
             $restauranteVisitado = RestauranteVisitado::where(

@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function ciudad()
     {
-        $ciudades = Ciudad::all();
+        $ciudades = Ciudad::paginate(10);
 
         foreach ($ciudades as $ciudad) {
             $ciudad->descripcion = Str::limit($ciudad->descripcion, 50);
@@ -34,7 +34,7 @@ class UsersController extends Controller
 
     public function hotel()
     {
-        $hoteles = Hotel::all();
+        $hoteles = Hotel::paginate(10);
 
         foreach ($hoteles as $hotel) {
             $hotel->descripcion = Str::limit($hotel->descripcion, 50);
@@ -45,7 +45,7 @@ class UsersController extends Controller
 
     public function restaurante()
     {
-        $restaurantes = Restaurante::all();
+        $restaurantes = Restaurante::paginate(10);
 
         foreach ($restaurantes as $restaurante) {
             $restaurante->descripcion = Str::limit(
@@ -58,14 +58,14 @@ class UsersController extends Controller
     }
     public function oferta()
     {
-        $ofertas = Oferta::all();
+        $ofertas = Oferta::paginate(10);
 
         return view("/users/oferta.index", compact("ofertas"));
     }
 
     public function usuario()
     {
-        $usuarios = User::all();
+        $usuarios = User::paginate(10);
 
         return view("/users/usuario.index", compact("usuarios"));
     }

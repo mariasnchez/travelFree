@@ -67,11 +67,14 @@
         <div class="w-3/4">
             <div class="grid grid-cols-1 gap-4 p-4">
                 @foreach ($hoteles as $i => $hotel)
+                    @php
+                        $numeroHotel = ($hoteles->currentPage() - 1) * $hoteles->perPage() + $i + 1;
+                    @endphp
                     <div class="bg-white rounded-md p-4 h-40 flex relative">
                         <div class="flex flex-col flex-grow">
                             <a class="cursor-pointer hover:font-bold hover:underline"
                                 href="/hotelDetallado?query={{ $hotel->nombre }}">
-                                <p class=" text-xl uppercase">{{ $i + 1 }}. {{ $hotel->nombre }}</p>
+                                <p class=" text-xl uppercase">{{ $numeroHotel}}. {{ $hotel->nombre }}</p>
                             </a>
                             <p class="text-sm">{{ $hotel->direccion }}</p>
                             @if ($hotel->media > 0)
@@ -98,6 +101,8 @@
                         <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="ml-auto h-40 -mt-4 -mr-4 ">
                     </div>
                 @endforeach
+                {{ $hoteles->appends(request()->query())->links() }}
+
             </div>
         </div>
 

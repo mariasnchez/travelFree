@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\HotelVisitado;
 use App\Models\RestauranteVisitado;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class OpinionesController extends Controller
 {
@@ -57,6 +58,24 @@ class OpinionesController extends Controller
                 }
                 return $opinion;
             });
-            return view("opiniones.index", compact("opiniones"));
+
+        $perPage = 15;
+        $currentPage = request()->query("page", 1);
+        $pagedData = $opiniones
+            ->slice(($currentPage - 1) * $perPage, $perPage)
+            ->all();
+        $opinionesPaginadas = new LengthAwarePaginator(
+            $pagedData,
+            count($opiniones),
+            $perPage,
+            $currentPage
+        );
+
+        $opinionesPaginadas
+            ->withPath(route("opiniones.index"))
+            ->appends(request()->query())
+            ->links();
+
+        return view("opiniones.index", compact("opinionesPaginadas"));
     }
 }

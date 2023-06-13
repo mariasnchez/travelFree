@@ -43,8 +43,11 @@
                 </a>
             </div>
             @foreach ($ciudades as $key => $ciudad)
+                @php
+                    $numero = ($ciudades->currentPage() - 1) * $ciudades->perPage() + $key + 1;
+                @endphp
                 <div class="bg-white m-4 mt-2 p-4 grid grid-cols-6 gap-3 shadow">
-                    <p class="flex items-center ">{{ $key + 1 }}</p>
+                    <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $ciudad->nombre }}</p>
                     <p class="flex items-center">{{ $ciudad->pais }}</p>
                     <p class="flex items-center">{{ $ciudad->descripcion }}</p>
@@ -68,6 +71,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $ciudades->appends(request()->query())->links() }}
 
         </div>
     </div>
