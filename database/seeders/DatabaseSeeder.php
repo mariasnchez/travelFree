@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        \App\Models\Destino::factory(15)->create();
         \App\Models\Ciudad::factory(15)->create();
         \App\Models\Hotel::factory(150)->create();
         \App\Models\HotelVisitado::factory(350)->create();

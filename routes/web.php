@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\HotelController;
@@ -26,7 +25,6 @@ Route::get('hotel', 'HomeController@hotel');
 Route::get('restaurante', 'HomeController@restaurante');
 Route::get('ciudad', 'HomeController@ciudad');
 
-Route::resource('/destinos', DestinoController::class)->middleware('auth');
 Route::resource('/ofertas', OfertaController::class);
 Route::resource('/ciudad', CiudadController::class);
 Route::resource('/hotel', HotelController::class);
@@ -66,9 +64,10 @@ Route::get('/admin', function() {
 Route::middleware('canAccess')->group(function () {
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::get('/users/hoteles', [UsersController::class, 'hotel'])->name('users.hotel.index');;
+Route::get('/users/usuarios', [UsersController::class, 'usuario'])->name('users.usuario.index');
+Route::get('/users/hoteles', [UsersController::class, 'hotel'])->name('users.hotel.index');
 Route::get('/users/restaurantes', [UsersController::class, 'restaurante'])->name('users.restaurante.index');
-Route::get('/users/ofertas', [UsersController::class, 'oferta'])->name('users.oferta.index');;
+Route::get('/users/ofertas', [UsersController::class, 'oferta'])->name('users.oferta.index');
 Route::get('/users/ciudades', [UsersController::class, 'ciudad'])->name('users.ciudad.index');
 
 

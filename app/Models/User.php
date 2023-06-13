@@ -31,13 +31,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function unoamuchos(){
-        return $this->hasMany('App\Models\Destino','id','idUsu');
-      }
 
     public function hotel()
     {
-        return $this->belongsToMany('App\Models\Hotel', 'hotel_visitado', 'idUsu',      'idHotel')
+        return $this->belongsToMany('App\Models\Hotel', 'hotel_visitado', 'idUsu', 'idHotel')
                     ->withPivot('fechaEntrada', 'fechaSalida', 'punUbi', 'punLim', 'punSer', 'punCalPre', 'comentario', 'idUsu', 'idHotel');
     }
 

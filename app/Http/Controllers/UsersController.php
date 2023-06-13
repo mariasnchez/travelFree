@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Ciudad;
 use App\Models\Restaurante;
@@ -61,4 +62,12 @@ class UsersController extends Controller
 
         return view("/users/oferta.index", compact("ofertas"));
     }
+
+    public function usuario()
+    {
+        $usuarios = User::all();
+
+        return view("/users/usuario.index", compact("usuarios"));
+    }
+
 }

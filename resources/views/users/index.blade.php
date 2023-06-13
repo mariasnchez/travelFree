@@ -60,6 +60,12 @@
                             Ofertas
                         </a>
                     </div>
+
+                    <div class="m-4 bg-slate-500 hover:bg-slate-400 text-white hover:scale-105 py-2 px-4 rounded-lg">
+                        <a href="/users/usuarios">
+                            Usuarios
+                        </a>
+                    </div>
                 </div>
             </div>
 
