@@ -8,62 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelFree</title>
-    <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
-        }
-
-        .search-input {
-            background-image: url('{{ asset('img/buscador.svg') }}');
-            background-repeat: no-repeat;
-            background-position: 10px center;
-            padding-left: 40px;
-        }
-
-        .carousel {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: auto;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            flex: 0 0 100%;
-        }
-
-        .prev,
-        .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            padding: 10px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .prev {
-            left: 2px;
-        }
-
-        .next {
-            right: 2px;
-        }
-    </style>
+    @vite(['resources/css/main.scss'])
 
     <script src="{{ asset('js/carrusel.js') }}"></script>
 
@@ -104,22 +49,22 @@
 
     </div>
 
-    <div class="flex items-center m-16 mb-4 text-[#727272] text-6xl uppercase font-bold">
+    <div class="flex items-center m-16 mb-6 text-[#727272] text-6xl uppercase font-bold">
         <h1>{{ $ciudad->nombre }}</h1>
     </div>
 
-    <div class="flex justify-center">
+    <div class="flex justify-center ">
         <form action="ciudad" method="GET" class="w-full max-w-sm">
             <div class="flex">
                 <select id="search-input" name="query"
-                    class="search-input rounded-md w-full appearance-none border-0 py-4 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100  h-16">
+                    class="search rounded-md w-full appearance-none border-0 py-4 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100  h-16">
                     <option value="">¿Dónde quieres ir?</option>
                     @foreach ($ciudades as $ciudades)
                         <option value="{{ $ciudades->nombre }}">{{ $ciudades->nombre }}</option>
                     @endforeach
                 </select>
                 <button type="submit"
-                    class="flex rounded-md items-center justify-center bg-slate-500 hover:bg-slate-600 text-white py-4 px-4 ml-1 ">
+                    class="flex rounded-md items-center justify-center bg-slate-500 hover:bg-slate-600 text-white px-4 py-4 ml-1 ">
                     Buscar
                 </button>
             </div>

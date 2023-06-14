@@ -8,76 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelFree</title>
-    <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
-        }
 
-        .carousel {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: auto;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            flex: 0 0 100%;
-        }
-
-        .prev,
-        .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            padding: 10px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .prev {
-            left: 2px;
-        }
-
-        .next {
-            right: 2px;
-        }
-
-        .custom-progress {
-            border-radius: 10px;
-        }
-
-        .custom-progress::-webkit-progress-bar {
-            background-color: #ccd2d9;
-            border-radius: 10px;
-        }
-
-        .custom-progress::-webkit-progress-value {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-
-        .custom-progress::-moz-progress-bar {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-    </style>
-
-    <script src="{{ asset('js/carrusel.js') }}"></script>
+    <script src="{{ asset('js/carruselSinSonido.js') }}"></script>
 
 </head>
 

@@ -9,11 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
-        }
-    </style>
+    
 </head>
 
 <body class="bg-[#ECECEC]">
