@@ -70,8 +70,9 @@
 </head>
 
 <body class="bg-[#ECECEC]">
-
-
+    <audio id="carousel-audio">
+        <source src="{{ asset('audio/audio.mp3') }}" type="audio/mpeg">
+    </audio>
     <div class="grid place-items-center h-60 bg-image bg-cover">
         <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
         <div>

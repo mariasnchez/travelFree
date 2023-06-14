@@ -3,6 +3,7 @@ function initCarousel() {
     var slides = document.querySelectorAll(".slide");
     var currentSlide = 0;
     var slideWidth = slides[0].clientWidth;
+    var audioElement = document.getElementById("carousel-audio");
 
     function showSlide(n) {
         if (n < 0) {
@@ -13,7 +14,9 @@ function initCarousel() {
             currentSlide = n;
         }
 
-        carouselContainer.style.transform = "translateX(-" + currentSlide * slideWidth + "px)";
+        carouselContainer.style.transform =
+            "translateX(-" + currentSlide * slideWidth + "px)";
+        playSound();
     }
 
     function nextSlide() {
@@ -22,6 +25,11 @@ function initCarousel() {
 
     function previousSlide() {
         showSlide(currentSlide - 1);
+    }
+
+    function playSound() {
+        audioElement.currentTime = 0;
+        audioElement.play();
     }
 
     showSlide(currentSlide);
@@ -33,6 +41,6 @@ function initCarousel() {
     nextButton.addEventListener("click", nextSlide);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     initCarousel();
 });

@@ -10,8 +10,20 @@
 
     <title>TravelFree</title>
     <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
+        .bg-video {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+
+        .bg-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: auto;
         }
 
         .search-input {
@@ -27,8 +39,13 @@
 <body class="bg-[#ECECEC]">
 
 
-    <div class="grid place-items-center h-60 bg-image bg-cover">
-        <div class="absolute inset-0 bg-black opacity-40 h-60"></div>
+    <div class="grid place-items-center h-60 bg-video">
+        <video autoplay muted loop>
+            <source src="{{ asset('video/trailer2.mp4') }}" type="video/mp4">
+        </video>
+
+        <div class="absolute inset-0 bg-black opacity-10 h-60"></div>
+
         <div>
             @if (Auth::check())
                 <div>
@@ -40,13 +57,13 @@
                     <form action="{{ route('logout') }}" method="POST" class="absolute m-6 top-0 right-0">
                         @csrf
                         <button type="submit"
-                            class="bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded">
+                            class="bg-zinc-600 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded">
                             {{ __('Logout') }}
                         </button>
                     </form>
                 </div>
             @else
-                <a class="absolute m-6 top-0 right-0 bg-zinc-700 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
+                <a class="absolute m-6 top-0 right-0 bg-zinc-600 hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded"
                     href="{{ route('login') }}">{{ __('Login') }}</a>
             @endif
 
