@@ -153,6 +153,8 @@
     </div>
 
     <script src="{{ asset('js/buscador.js') }}" type="module"></script>
+    <script src="{{ asset('js/localRecientes.js') }}" type="module"></script>
+
 
 </body>
 

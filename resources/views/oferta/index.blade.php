@@ -13,7 +13,6 @@
     <script src="{{ asset('js/animacion.js') }}"></script>
 
 
-
 </head>
 
 <body>
@@ -111,9 +110,13 @@
     </div>
 
 
-    <div class="subtitulo">
+    <div id="recientes" class="subtitulo">
         <h1>Búsquedas recientes</h1>
     </div>
+
+    <div id="recientes" tabindex='1' class="list-group"></ul>
+
+
 
 
     <div class="subtitulo">
@@ -168,6 +171,8 @@
     </div>
 
     <script src="{{ asset('js/buscador.js') }}" type="module"></script>
+    <script src="{{ asset('js/localRecientes.js') }}" type="module"></script>
+
 
 </body>
 
