@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -37,9 +37,9 @@
             @endif
         </div>
 
-        <h1 class="absolute text-9xl text-white">
+        <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
-                <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
+                <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
 
     </div>
@@ -50,27 +50,24 @@
     </div>
 
     <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
-        <p>{{ $total }} hoteles en </p>
-        <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
+        <p>{{ $total }} hoteles en 
+        <span class="uppercase font-bold">{{ $ciudad->nombre }} </span></p>
     </div>
 
     <div class="flex mx-10">
-        <div class="w-1/4 p-4">
-            <div class="w-full h-16 bg-white rounded-md mb-4">
-                <p class="text-center"> filtros </p>
-            </div>
-        </div>
-        <div class="w-3/4">
-            <div class="grid grid-cols-1 gap-4 p-4">
+
+        <div class="w-full">
+            <div class="grid grid-cols-1 gap-4 p-2">
                 @foreach ($hoteles as $i => $hotel)
                     @php
                         $numeroHotel = ($hoteles->currentPage() - 1) * $hoteles->perPage() + $i + 1;
                     @endphp
-                    <div class="bg-white rounded-md p-4 h-40 flex relative">
+                    <div class="bg-white rounded-md p-4 h-56 md:h-40 flex relative">
                         <div class="flex flex-col flex-grow">
                             <a class="cursor-pointer hover:font-bold hover:underline"
                                 href="/hotelDetallado?query={{ $hotel->nombre }}">
-                                <p class=" text-xl uppercase">{{ $numeroHotel}}. {{ $hotel->nombre }}</p>
+                                <p class=" text-base md:text-xl uppercase">{{ $numeroHotel }}. {{ $hotel->nombre }}
+                                </p>
                             </a>
                             <p class="text-sm">{{ $hotel->direccion }}</p>
                             @if ($hotel->media > 0)
@@ -83,18 +80,23 @@
 
                         </div>
                         <div class="flex flex-col-reverse">
-                            <div class=" mr-4">
+                            <div class="md:mr-4">
                                 @if ($hotel->ofertas->count() > 0)
-                                    <div class="bg-cyan-500 text-white p-2 w-fit">Oferta disponible</div>
+                                    <div class="bg-cyan-500 text-white text-right p-2 w-fit">Oferta disponible</div>
                                 @endif
                             </div>
-                            <div class="mt-auto mr-4 text-right">
+                            <div class="mt-auto md:mr-4 text-right">
                                 <span class="font-bold text-xl">{{ $hotel->precio }}€</span>
                                 <span class="text-sm">/noche</span>
                             </div>
                         </div>
+                        <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="hidden md:block ml-auto h-40 -mt-4 -mr-4">
 
-                        <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="ml-auto h-40 -mt-4 -mr-4 ">
+                        <!-- Versión para pantallas más pequeñas que md -->
+                        <div class="absolute top-4 right-4 w-28 h-40 md:hidden">
+                            <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="ml-auto -mt-4 -mr-4">
+                        </div>
+        
                     </div>
                 @endforeach
                 {{ $hoteles->appends(request()->query())->links() }}

@@ -30,7 +30,7 @@
 
         <div class=" items-center m-10 mt-0">
             <h1 class="text-4xl uppercase">Todos los restaurantes</h1>
-            <div class="m-4 mt-2 p-4 grid grid-cols-10 gap-2 uppercase">
+            <div class="m-4 mt-2 p-4 sm:grid grid-cols-10 gap-2 uppercase">
                 <p class="flex items-center ">Número</p>
                 <p class="flex items-center">Nombre</p>
                 <p class="flex items-center">Dirección</p>
@@ -50,7 +50,7 @@
                 @php
                     $numero = ($restaurantes->currentPage() - 1) * $restaurantes->perPage() + $key + 1;
                 @endphp
-                <div class="bg-white m-4 mt-2 p-4 grid grid-cols-10 gap-2 shadow">
+                <div class="bg-white m-4 mt-2 p-4 sm:grid grid-cols-10 gap-2 shadow">
                     <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $restaurante->nombre }}</p>
                     <p class="flex items-center">{{ $restaurante->direccion }}</p>

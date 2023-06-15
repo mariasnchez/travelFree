@@ -121,13 +121,14 @@ body {
 
 #titulo {
     position: absolute;
-    font-size: 8rem;
+    font-size: 3rem;
     line-height: 1;
     color: white;
+    margin-top: 1rem;
 }
 
-#titulo img {
-    width: 7rem;
+#titulo svg {
+    width: 4rem;
     display: inline-block;
 }
 
@@ -136,7 +137,7 @@ body {
     align-items: center;
     margin: 2.5rem;
     color: black;
-    font-size: 2.25rem;
+    font-size: 1.5rem;
     line-height: 2.5rem;
     text-transform: uppercase;
 }
@@ -153,12 +154,12 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
         0 2px 4px -1px rgba(0, 0, 0, 0.06);
     width: 100%;
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     background-color: #b0c4de;
 }
 
@@ -184,7 +185,7 @@ body {
 
 #ciudades {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin: 2.5rem;
 }
@@ -209,8 +210,11 @@ body {
 }
 
 #ciudad img {
-    width: 100%;
+    height:auto;
+    width: auto;
+    max-width: 100%;
 }
+
 
 #capaCiudad,
 #capaOferta {
@@ -254,7 +258,7 @@ body {
 
 #ofertas {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 1rem;
     margin: 2.5rem;
 }
@@ -336,6 +340,7 @@ body {
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease;
+    align-items: center;
 }
 
 .slide {
@@ -386,4 +391,69 @@ body {
 .custom-progress::-moz-progress-bar {
     background-color: #007bff;
     border-radius: 10px;
+}
+
+//vista hotel 
+
+
+
+
+//responsive 
+@media (min-width: 768px) {
+    #titulo {
+        font-size: 3.75rem;
+        line-height: 1;
+    }
+    .subtitulo {
+        font-size: 2.25rem;  
+    }
+}
+
+@media (min-width: 768px) {
+    #titulo {
+        font-size: 3.75rem;
+        line-height: 1;
+        
+    }
+    #titulo svg{
+        width: 5rem/* 80px */;
+    }
+    #buscador {
+        padding-left: 8rem;
+        padding-right: 8rem;
+    }
+    #ofertas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    #titulo {
+        font-size: 4.5rem/* 72px */;
+        line-height: 1;
+    }
+    #titulo svg{
+        width: 7rem;
+    }
+    #buscador {
+        padding-left: 15rem;
+        padding-right: 15rem;
+    }
+    #ciudades {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    #ofertas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    #titulo {
+        font-size: 8rem/* 128px */;
+        line-height: 1;
+    }
+    #buscador {
+        padding-left: 20rem;
+        padding-right: 20rem;
+    }
 }

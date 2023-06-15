@@ -39,10 +39,11 @@
             @endif
         </div>
 
-        <h1 class="absolute text-9xl text-white">
+         <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
-                <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
+                <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
+
 
     </div>
 
@@ -52,18 +53,13 @@
     </div>
 
     <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
-        <p>{{ $total }} restaurantes en </p>
-        <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
+        <p>{{ $total }} restaurantes en 
+        <span class="uppercase font-bold">{{ $ciudad->nombre }} </span></p>
     </div>
 
     <div class="flex mx-10">
-        <div class="w-1/4 p-4">
-            <div class="w-full h-16 bg-white rounded-md mb-4">
-                <p class="text-center"> filtros </p>
-            </div>
-        </div>
-        <div class="w-3/4 mb-4">
-            <div class="grid grid-cols-3 gap-4 p-4">
+        <div class="w-full mb-4">
+            <div class="grid md:grid-cols-3 gap-4 p-4 justify-center">
                 @foreach ($restaurantes as $i => $restaurante)
                     @php
                         $numeroRes = ($restaurantes->currentPage() - 1) * $restaurantes->perPage() + $i + 1;

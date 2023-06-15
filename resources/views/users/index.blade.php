@@ -30,9 +30,9 @@
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
         </div>
-        <div class="container m-10">
-            <div class="text-6xl text-[#727272] mb-10">
-                <p>Administrador</p>
+        <div class="container lg:m-10 mt-10">
+            <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
+                <p class="text-center">Administrador</p>
             </div>
 
             <div class="flex justify-center items-center text-center uppercase">

@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="bg-[#ECECEC]">
+<body class="bg-[#ECECEC] mb-10">
     <audio id="carousel-audio">
         <source src="{{ asset('audio/audio.mp3') }}" type="audio/mpeg">
     </audio>
@@ -42,18 +42,18 @@
             @endif
         </div>
 
-        <h1 class="absolute text-9xl text-white">
+        <h1 class="absolute text-5xl mt-4 text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
-                <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
+                <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
 
     </div>
 
-    <div class="flex items-center m-16 mb-6 text-[#727272] text-6xl uppercase font-bold">
+    <div class="flex items-center text-center m-16 ml-10 mb-6 text-[#727272] text-6xl uppercase font-bold">
         <h1>{{ $ciudad->nombre }}</h1>
     </div>
 
-    <div class="flex justify-center ">
+    <div class="flex justify-center mx-10 ">
         <form action="ciudad" method="GET" class="w-full max-w-sm">
             <div class="flex">
                 <select id="search-input" name="query"
@@ -73,25 +73,25 @@
 
 
     <div class="flex items-center justify-center mt-6 mb-10">
-        <div class="relative bg-white rounded-md w-48 mx-2 hover:bg-slate-100">
+        <div class="relative bg-white rounded-md w-44 mx-2 hover:bg-slate-100 ">
             <a href="hotel?query={{ $query }}"
                 class="flex flex-col items-start justify-end h-full p-4 text-black">
-                <img class="inline-block w-10" src="{{ URL::asset('img/hotel.svg') }}" />
-                <span class="text-base font-bold ml-24">HOTELES</span>
+                <img class="inline-block w-8" src="{{ URL::asset('img/hotel.svg') }}" />
+                <span class="text-base font-bold">HOTELES</span>
             </a>
         </div>
-        <div class="relative bg-white rounded-md w-48 mx-2 hover:bg-slate-100">
+        <div class="relative bg-white rounded-md w-44 mx-2 hover:bg-slate-100 ">
             <a href="restaurante?query={{ $query }}"
                 class="flex flex-col items-start justify-end h-full p-4 text-black">
-                <img class="inline-block w-10" src="{{ URL::asset('img/restaurante.svg') }}" />
-                <p class="text-base font-bold ml-12">RESTAURANTES</p>
+                <img class="inline-block w-8" src="{{ URL::asset('img/restaurante.svg') }}" />
+                <p class="text-base font-bold">RESTAURANTES</p>
             </a>
         </div>
     </div>
 
 
     <div class="flex justify-center">
-        <div class="carousel w-2/5">
+        <div class="carousel w-full m-5 md:w-3/5 lg:w-2/5 ">
             <div class="carousel-container">
                 <div class="slide">
                     <img src="{{ $ciudad->foto1 }}" alt="Imagen 1">
@@ -111,12 +111,12 @@
         </div>
     </div>
 
-    <div class="flex items-center m-10 mb-3 ml-36 text-black text-3xl">
+    <div class="flex items-center m-10 mb-3 md:ml-36 text-black text-3xl">
         <p>Un poco sobre</p>
         <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
     </div>
 
-    <div class="flex items-center m-10 mt-4 ml-36 mr-36 text-black text-xl">
+    <div class="flex items-center m-10 mt-4 ml-16 mr-16 md:ml-36 md:mr-36 text-black text-xl">
         <p>[{{ $ciudad->descripcion }}]</p>
     </div>
 
@@ -124,7 +124,7 @@
         <h1>Hoteles destacados</h1>
     </div>
 
-    <div class="grid grid-cols-4 gap-4 m-10">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 m-10">
         @foreach ($hotelesDestacados as $hotel)
             <a class="cursor-pointer" href="/hotelDetallado?query={{ $hotel->nombre }}">
                 <div class="relative max-w-sm rounded overflow-hidden shadow-lg hover:scale-105">
@@ -132,7 +132,7 @@
                     <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full">
                     </div>
                     <div class="absolute bottom-0 left-0 text-white px-2 py-1">
-                        <p class="font-bold text-xl uppercase">{{ $hotel->nombre }}</p>
+                        <p class="font-bold text-lg md:text-xl uppercase">{{ $hotel->nombre }}</p>
                     </div>
                 </div>
             </a>
@@ -143,7 +143,7 @@
         <h1>Restaurantes destacados</h1>
     </div>
 
-    <div class="grid grid-cols-4 gap-4 m-10">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 m-10">
         @foreach ($restaurantesDestacados as $restaurante)
             <a class="cursor-pointer" href="/restauranteDetallado?query={{ $restaurante->nombre }}">
                 <div class="relative max-w-sm rounded overflow-hidden shadow-lg hover:scale-105">
@@ -151,7 +151,7 @@
                     <div class="absolute bottom-0 left-0 bg-black bg-opacity-20 hover:bg-opacity-40 w-full h-full">
                     </div>
                     <div class="absolute bottom-0 left-0 text-white px-2 py-1">
-                        <p class="font-bold text-xl uppercase">{{ $restaurante->nombre }}</p>
+                        <p class="font-bold text-lg md:text-xl uppercase">{{ $restaurante->nombre }}</p>
                     </div>
                 </div>
             </a>

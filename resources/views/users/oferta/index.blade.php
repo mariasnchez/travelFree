@@ -31,7 +31,7 @@
 
         <div class=" items-center m-10 mt-0">
             <h1 class="text-4xl uppercase">Todas las ofertas</h1>
-            <div class="m-4 mt-2 p-4 grid grid-cols-5 gap-2 uppercase">
+            <div class="m-4 mt-2 p-4 sm:grid grid-cols-5 gap-2 uppercase">
                 <p class="flex items-center ">Número</p>
                 <p class="flex items-center">Precio oferta</p>
                 <p class="flex items-center">Fecha fin</p>
@@ -45,7 +45,7 @@
                 @php
                     $numero = ($ofertas->currentPage() - 1) * $ofertas->perPage() + $key + 1;
                 @endphp
-                <div class="bg-white m-4 mt-2 p-4 grid grid-cols-5 gap-2 shadow">
+                <div class="bg-white m-4 mt-2 p-4 sm:grid grid-cols-5 gap-2 shadow">
                     <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $oferta->precioOferta }}</p>
                     <p class="flex items-center">{{ $oferta->fechaFin }}</p>

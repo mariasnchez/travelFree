@@ -31,7 +31,7 @@
 
         <div class=" items-center m-10 mt-0">
             <h1 class="text-4xl uppercase">Todas las ciudades</h1>
-            <div class="m-4 mt-2 p-4 grid grid-cols-6 gap-3 uppercase">
+            <div class="m-4 mt-2 p-4 sm:grid sm:grid-cols-6 gap-3 uppercase">
                 <p class="flex items-center ">Número</p>
                 <p class="flex items-center">Nombre</p>
                 <p class="flex items-center">País</p>
@@ -46,7 +46,7 @@
                 @php
                     $numero = ($ciudades->currentPage() - 1) * $ciudades->perPage() + $key + 1;
                 @endphp
-                <div class="bg-white m-4 mt-2 p-4 grid grid-cols-6 gap-3 shadow">
+                <div class="bg-white m-4 mt-2 p-4 sm:grid sm:grid-cols-6 gap-3 shadow">
                     <p class="flex items-center ">{{ $numero }}</p>
                     <p class="flex items-center">{{ $ciudad->nombre }}</p>
                     <p class="flex items-center">{{ $ciudad->pais }}</p>

@@ -33,33 +33,33 @@
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
         </div>
-        <div class="container m-10">
-            <div class="text-6xl text-[#727272] mb-10">
+        <div class="container lg:m-10 mt-10">
+            <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
                 <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
             </div>
 
-            <div class="text-2xl text-[#4B4B4B]">
+            <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
                 <a href="hotelVisitado">
-                    <p class="inline-block cursor-pointer hover:text-black">Hoteles</p>
+                    <p class=" cursor-pointer hover:text-black">Hoteles</p>
                 </a>
                 <a href="restauranteVisitado">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Restaurantes</p>
+                    <p class="cursor-pointer hover:text-black">Restaurantes</p>
                 </a>
-                <p class="font-bold inline-block border-b-4 border-b-[#4B4B4B] pb-3 ml-6">Opiniones</p>
+                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3">Opiniones</p>
                 <a href="perfil">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Mi perfil</p>
+                    <p class=" cursor-pointer hover:text-black">Mi perfil</p>
                 </a>
             </div>
 
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-4xl uppercase">Tus opiniones</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase">Tus opiniones</h1>
                 </div>
                 <div class="mt-4">
                     @if ($opinionesPaginadas->count() === 0)
                         <p class="text-lg mt-2">Aún no hay ninguna opinion.</p>
                     @else
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                             @foreach ($opinionesPaginadas as $opinion)
                                 <div class="bg-white p-4 relative m-1 shadow-lg">
                                     <div class="uppercase font-bold text-lg">

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -34,29 +34,30 @@
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
         </div>
-        <div class="container m-10">
-            <div class="text-6xl text-[#727272] mb-10">
+        <div class="container lg:m-10 mt-10">
+            <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
                 <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
             </div>
 
-            <div class="text-2xl text-[#4B4B4B]">
-                <p class="font-bold inline-block border-b-4 border-b-[#4B4B4B] pb-3">Hoteles</p>
+            <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
+                <p class="font-bold border-b-4 border-[#4B4B4B] pb-3">Hoteles</p>
                 <a href="restauranteVisitado">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Restaurantes</p>
+                    <p class="cursor-pointer hover:text-black">Restaurantes</p>
                 </a>
                 <a href="opiniones">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Opiniones</p>
+                    <p class="cursor-pointer hover:text-black">Opiniones</p>
                 </a>
                 <a href="perfil">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Mi perfil</p>
+                    <p class="cursor-pointer hover:text-black">Mi perfil</p>
                 </a>
             </div>
 
+
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-4xl uppercase">Hoteles visitados</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase">Hoteles visitados</h1>
                     <a href="{{ URL::to('hotelVisitado/create') }}">
-                        <h1 class="cursor-pointer hover:text-slate-600 text-xl uppercase"><img
+                        <h1 class="cursor-pointer hover:text-slate-600 text-base text-right sm:text-xl uppercase"><img
                                 class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />Añadir visita
                         </h1>
                     </a>
@@ -71,37 +72,37 @@
                                     <div>
                                         <div class="nombre mb-3">
                                             <a href="/hotelDetallado?query={{ $hotelVisitado->hotel->nombre }}">
-                                                <p class="text-2xl font-bold uppercase hover:underline cursor-pointer">
+                                                <p class="text-xl sm:text-2xl font-bold uppercase hover:underline cursor-pointer">
                                                     {{ $hotelVisitado->hotel->nombre }},
                                                     {{ $hotelVisitado->hotel->ciudad->nombre }}
                                                 </p>
                                             </a>
                                         </div>
                                         <div class="fecha">
-                                            <p class="text-lg uppercase">Fecha</p>
-                                            <p class="text-base">
+                                            <p class="text-base sm:text-lg uppercase">Fecha</p>
+                                            <p class="text-sm sm:text-base">
                                                 {{ date('d/m/y', strtotime($hotelVisitado->fechaEntrada)) }} -
                                                 {{ date('d/m/y', strtotime($hotelVisitado->fechaSalida)) }}
                                             </p>
                                         </div>
                                         <div class="comentario mt-3">
-                                            <p class="text-lg uppercase">Comentario</p>
-                                            <p class="text-base">{{ $hotelVisitado->comentario }} </p>
+                                            <p class="text-base sm:text-lg uppercase">Comentario</p>
+                                            <p class="text-sm sm:text-base">{{ $hotelVisitado->comentario }} </p>
                                         </div>
                                     </div>
-                                    <div class="valoracion ml-3 mt-11">
-                                        <p class="text-lg uppercase">Valoración</p>
-                                        <p class="text-base">Ubicación · {{ $hotelVisitado->punUbi }} </p>
-                                        <p class="text-base">Limpieza · {{ $hotelVisitado->punLim }} </p>
-                                        <p class="text-base">Servicio · {{ $hotelVisitado->punSer }} </p>
-                                        <p class="text-base">Calidad-Precio · {{ $hotelVisitado->punCalPre }} </p>
+                                    <div class="valoracion mt-5 ml-3 md:mt-11">
+                                        <p class="text-base sm:text-lg uppercase">Valoración</p>
+                                        <p class="text-sm sm:text-base">Ubicación · {{ $hotelVisitado->punUbi }} </p>
+                                        <p class="text-sm sm:text-base">Limpieza · {{ $hotelVisitado->punLim }} </p>
+                                        <p class="text-sm sm:text-base">Servicio · {{ $hotelVisitado->punSer }} </p>
+                                        <p class="text-sm sm:text-base">Calidad-Precio · {{ $hotelVisitado->punCalPre }} </p>
                                     </div>
-                                    <div class="absolute top-3 right-6 flex flex-col justify-end mr-3 mt-3">
+                                    <div class="absolute bottom-3 md:bottom-auto md:top-3 right-6 flex flex-col justify-end mr-3 mt-3">
                                         <form action="{{ route('hotelVisitado.destroy', $hotelVisitado->idHotVis) }}"
                                             method="POST">
                                             <a href="{{ route('hotelVisitado.edit', $hotelVisitado->idHotVis) }}">
                                                 <p
-                                                    class="cursor-pointer text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center">
+                                                    class="cursor-pointer text-base sm:text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center justify-end">
                                                     <img class="w-7 inline-block"
                                                         src="{{ URL::asset('img/editar.svg') }}" />
                                                     &nbspEditar
@@ -112,7 +113,7 @@
                                             @method('DELETE')
                                             <td> <button type="submit" class="mt-3">
                                                     <p
-                                                        class="cursor-pointer text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center">
+                                                        class="cursor-pointer text-base sm:text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center justify-end">
                                                         <img class="w-7 inline-block"
                                                             src="{{ URL::asset('img/basura.svg') }}" />
                                                         &nbspBorrar

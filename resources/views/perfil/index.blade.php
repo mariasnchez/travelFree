@@ -32,28 +32,28 @@
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
         </div>
-        <div class="container m-10">
-            <div class="text-6xl text-[#727272] mb-10">
+        <div class="container lg:m-10 mt-10">
+            <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
                 <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
             </div>
 
-            <div class="text-2xl text-[#4B4B4B]">
+            <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
                 <a href="hotelVisitado">
-                    <p class="inline-block cursor-pointer hover:text-black">Hoteles</p>
+                    <p class=" cursor-pointer hover:text-black">Hoteles</p>
                 </a>
                 <a href="restauranteVisitado">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Restaurantes</p>
+                    <p class="cursor-pointer hover:text-black">Restaurantes</p>
                 </a>
                 <a href="opiniones">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Opiniones</p>
+                    <p class="cursor-pointer hover:text-black">Opiniones</p>
                 </a>
-                <p class="font-bold inline-block border-b-4 border-b-[#4B4B4B] pb-3 ml-6">Mi perfil</p>
+                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3">Mi perfil</p>
 
             </div>
 
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-4xl uppercase">Tu perfil</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase">Tu perfil</h1>
                     <div class="ml-2 relative">
                         <button class="text-gray-600 hover:text-black focus:outline-none">
                             <img class="w-8 mr-10" src="{{ URL::asset('img/ajustes.svg') }}" />
@@ -72,11 +72,11 @@
             </div>
             <div class="mt-4">
                 <div class="grid grid-cols-1 gap-2 relative">
-                    <p class="text-xl"><img class="inline-block w-10 mr-2"
+                    <p class="text-lg sm:text-xl"><img class="inline-block w-10 mr-2"
                             src="{{ URL::asset('img/usuario.svg') }}" />USUARIO: {{ $user->name }}</p>
-                    <p class="text-xl w-1/3 pb-3 border-b border-slate-600"><img class="inline-block w-10 mr-2"
+                    <p class="text-lg sm:text-xl w-1/3 pb-3 border-b border-slate-600"><img class="inline-block w-10 mr-2"
                             src="{{ URL::asset('img/email.svg') }}" />EMAIL: {{ $user->email }}</p>
-                    <div class="mt-2 text-xl">
+                    <div class="mt-2 text-lg sm:text-xl">
                         <p>Número de hoteles visitados: {{ $hoteles->count() }}</p>
                         <p>Número de restaurantes visitados: {{ $restaurantes->count() }}</p>
                     </div>

@@ -40,9 +40,9 @@
             @endif
         </div>
 
-        <h1 class="absolute text-9xl text-white">
+        <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
-                <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
+                <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
     </div>
 
@@ -71,7 +71,7 @@
     </div>
 
     <div class="flex justify-center">
-        <div class="carousel w-2/5 mt-2">
+        <div class="carousel mx-4 md:w-2/5 mt-2">
             <div class="carousel-container">
                 <div class="slide">
                     <img src="{{ $restaurante->foto1 }}" alt="Imagen 1">
@@ -96,8 +96,8 @@
         </div>
     </div>
 
-    <div class="flex mx-10 my-6">
-        <div class="w-1/3 p-4  bg-white mr-10 ">
+    <div class="grid grid-cols-1 md:grid-cols-3 mx-10 my-6">
+        <div class="p-4  bg-white mb-6 md:mb-0 md:mr-4 ">
             <div class="w-full h-16rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
             </div>
@@ -137,7 +137,7 @@
 
             @endif
         </div>
-        <div class="w-1/3 p-4 bg-white  mr-10">
+        <div class="p-4 bg-white mb-6 md:mb-0 md:mr-4">
             <div class="w-full h-16 rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
             </div>
@@ -145,7 +145,7 @@
                 <p class="text-xl">{{ $restaurante->descripcion }}</p>
             </div>
         </div>
-        <div class="w-1/3 p-4 bg-white ">
+        <div class="p-4 bg-white ">
             <div class="w-full h-16 rounded-md mb-6">
                 <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Detalles</p>
             </div>
@@ -171,12 +171,12 @@
 
 
     <div class="mx-10 mb-10 p-4 bg-white ">
-        <div class="w-full h-16 rounded-md mb-6">
+        <div class="w-full rounded-md mb-6">
             <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Opiniones</p>
         </div>
         @if ($numeroComentarios > 0)
             @foreach ($restauranteVisitado as $visitado)
-                <div class="w-full h-16 rounded-md mb-6">
+                <div class="w-full  rounded-md mb-6">
                     <div class="mx-4">
                         <p class="text-xl"><img class="inline-block w-12 mr-2"
                                 src="{{ URL::asset('img/user.svg') }}" />{{ $visitado->usuario->name }}</p>

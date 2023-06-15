@@ -8,76 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelFree</title>
-    <style>
-        .bg-image {
-            background-image: url('{{ asset('img/cabecera.jpg') }}');
-        }
 
-        .carousel {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: auto;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            flex: 0 0 100%;
-        }
-
-        .prev,
-        .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            padding: 10px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .prev {
-            left: 2px;
-        }
-
-        .next {
-            right: 2px;
-        }
-
-        .custom-progress {
-            border-radius: 10px;
-        }
-
-        .custom-progress::-webkit-progress-bar {
-            background-color: #ccd2d9;
-            border-radius: 10px;
-        }
-
-        .custom-progress::-webkit-progress-value {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-
-        .custom-progress::-moz-progress-bar {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-    </style>
-
-    <script src="{{ asset('js/carrusel.js') }}"></script>
+    <script src="{{ asset('js/carruselSinSonido.js') }}"></script>
 
 </head>
 
@@ -108,9 +40,9 @@
             @endif
         </div>
 
-        <h1 class="absolute text-9xl text-white">
+        <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
-                <img class="inline-block w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
+                <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
     </div>
 
@@ -135,7 +67,7 @@
     </div>
 
     <div class="flex justify-center">
-        <div class="carousel w-2/5 mt-2">
+        <div class="carousel mx-4 md:w-2/5 mt-2">
             <div class="carousel-container">
                 <div class="slide">
                     <img src="{{ $hotel->foto1 }}" alt="Imagen 1">
@@ -160,70 +92,71 @@
         </div>
     </div>
 
-    <div class="flex mx-10 my-6">
-        <div class="w-2/4 p-4  bg-white mr-10 ">
-            <div class="w-full h-16rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
+    <div class="grid md:grid-cols-2 md:mx-10">
+            <div class="p-4  bg-white mx-10 mt-10 md:mb-10">
+                <div class="w-full h-16rounded-md mb-6">
+                    <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
+                </div>
+                @if ($numeroComentarios == 0)
+                    <div class="ml-4">
+                        <p class="text-xl">Aún no hay valoraciones.</p>
+                    </div>
+                @else
+                    <div class="ml-4">
+                        <span class="text-2xl text-white rounded-lg bg-slate-400 p-2 pr-1 w-fit mr-2">
+                            {{ $mediaRedondeada }}
+                        </span>
+                        @if ($mediaRedondeada < 5)
+                            <span class="text-xl">Malo</span>
+                        @elseif($mediaRedondeada >= 5 && $mediaRedondeada < 7)
+                            <span class="text-xl">Aceptable</span>
+                        @elseif($mediaRedondeada >= 7 && $mediaRedondeada < 8)
+                            <span class="text-xl">Genial</span>
+                        @elseif($mediaRedondeada >= 8 && $mediaRedondeada < 9)
+                            <span class="text-xl">Fantástico</span>
+                        @elseif($mediaRedondeada >= 9)
+                            <span class="text-xl">Excelente</span>
+                        @endif
+                    </div>
+                    <div class="text-xl mt-4">
+                        <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                                value="{{ $sumaUbi / $numeroComentarios }}" max="10"></progress>
+                            {{ number_format($sumaUbi / $numeroComentarios, 1) }} · Ubicación</p>
+                        <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                                value="{{ $sumaLim / $numeroComentarios }}" max="10"></progress>
+                            {{ number_format($sumaLim / $numeroComentarios, 1) }} · Limpieza</p>
+                        <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                                value="{{ $sumaSer / $numeroComentarios }}" max="10"></progress>
+                            {{ number_format($sumaSer / $numeroComentarios, 1) }} · Servicio</p>
+                        <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                                value="{{ $sumaCalPre / $numeroComentarios }}" max="10"></progress>
+                            {{ number_format($sumaCalPre / $numeroComentarios, 1) }} · Calidad-Precio
+                        </p>
+                    </div>
+
+                @endif
             </div>
-            @if ($numeroComentarios == 0)
+            <div class="p-4 bg-white m-10 ">
+                <div class="w-full rounded-md mb-6">
+                    <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
+                </div>
                 <div class="ml-4">
-                    <p class="text-xl">Aún no hay valoraciones.</p>
+                    <p class="text-xl">{{ $hotel->descripcion }}</p>
                 </div>
-            @else
-                <div class="ml-4">
-                    <span class="text-2xl text-white rounded-lg bg-slate-400 p-2 pr-1 w-fit mr-2">
-                        {{ $mediaRedondeada }}
-                    </span>
-                    @if ($mediaRedondeada < 5)
-                        <span class="text-xl">Malo</span>
-                    @elseif($mediaRedondeada >= 5 && $mediaRedondeada < 7)
-                        <span class="text-xl">Aceptable</span>
-                    @elseif($mediaRedondeada >= 7 && $mediaRedondeada < 8)
-                        <span class="text-xl">Genial</span>
-                    @elseif($mediaRedondeada >= 8 && $mediaRedondeada < 9)
-                        <span class="text-xl">Fantástico</span>
-                    @elseif($mediaRedondeada >= 9)
-                        <span class="text-xl">Excelente</span>
-                    @endif
-                </div>
-                <div class="text-xl mt-4">
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaUbi / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaUbi / $numeroComentarios, 1) }} · Ubicación</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaLim / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaLim / $numeroComentarios, 1) }} · Limpieza</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaSer / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaSer / $numeroComentarios, 1) }} · Servicio</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
-                            value="{{ $sumaCalPre / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaCalPre / $numeroComentarios, 1) }} · Calidad-Precio
-                    </p>
+                <div class="w-full rounded-md mb-6">
+                    <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 mb-">Precio por noche</p>
+                    <div class="ml-4 mt-4">
+                        @if ($hotel->ofertas->count() > 0)
+                            <span class="text-lg line-through">{{ $hotel->precio }}€ </span><span
+                                class="text-3xl font-bold text-green-700">&nbsp{{ $hotel->ofertas[0]->precioOferta }}€</span>
+                        @else
+                            <span class="text-2xl font-bold">{{ $hotel->precio }}€</span>
+                        @endif
+                    </div>
                 </div>
 
-            @endif
-        </div>
-        <div class="w-2/4 p-4 bg-white ">
-            <div class="w-full rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
-            </div>
-            <div class="ml-4">
-                <p class="text-xl">{{ $hotel->descripcion }}</p>
-            </div>
-            <div class="w-full rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 mb-">Precio por noche</p>
-                <div class="ml-4 mt-4">
-                    @if ($hotel->ofertas->count() > 0)
-                        <span class="text-lg line-through">{{ $hotel->precio }}€ </span><span
-                            class="text-3xl font-bold text-green-700">&nbsp{{ $hotel->ofertas[0]->precioOferta }}€</span>
-                    @else
-                        <span class="text-2xl font-bold">{{ $hotel->precio }}€</span>
-                    @endif
-                </div>
-            </div>
 
-
+            </div>
         </div>
     </div>
 

@@ -33,29 +33,29 @@
         <div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
         </div>
-        <div class="container m-10">
-            <div class="text-6xl text-[#727272] mb-10">
+        <div class="container lg:m-10 mt-10">
+            <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
                 <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
             </div>
 
-            <div class="text-2xl text-[#4B4B4B]">
+            <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
                 <a href="hotelVisitado">
-                    <p class="inline-block cursor-pointer hover:text-black">Hoteles</p>
+                    <p class=" cursor-pointer hover:text-black">Hoteles</p>
                 </a>
-                <p class="font-bold inline-block border-b-4 border-b-[#4B4B4B] pb-3 ml-6">Restaurantes</p>
+                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3">Restaurantes</p>
                 <a href="opiniones">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Opiniones</p>
+                    <p class=" cursor-pointer hover:text-black">Opiniones</p>
                 </a>
                 <a href="perfil">
-                    <p class="inline-block ml-6 cursor-pointer hover:text-black">Mi perfil</p>
+                    <p class=" cursor-pointer hover:text-black">Mi perfil</p>
                 </a>
             </div>
 
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-4xl uppercase">Restaurantes visitados</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase">Restaurantes visitados</h1>
                     <a href="{{ URL::to('restauranteVisitado/create') }}">
-                        <h1 class="cursor-pointer hover:text-slate-600 text-xl uppercase"><img
+                        <h1 class="cursor-pointer hover:text-slate-600  text-base text-right sm:text-xl uppercase"><img
                                 class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
                     </a>
                 </div>
@@ -69,35 +69,35 @@
                                     <div>
                                         <div class="nombre mb-3">
                                             <a href="/restauranteDetallado?query={{ $visitado->restaurante->nombre }}">
-                                                <p class="text-2xl font-bold uppercase hover:underline cursor-pointer">
+                                                <p class="text-xl sm:text-2xl font-bold uppercase hover:underline cursor-pointer">
                                                     {{ $visitado->restaurante->nombre }},
                                                     {{ $visitado->restaurante->ciudad->nombre }}
                                                 </p>
                                             </a>
                                         </div>
                                         <div class="fecha">
-                                            <p class="text-lg uppercase">Fecha</p>
-                                            <p class="text-base">
+                                            <p class="text-base sm:text-lg uppercase">Fecha</p>
+                                            <p class="text-sm sm:text-base">
                                                 {{ date('d/m/y', strtotime($visitado->fechaVisita)) }}
                                             </p>
                                         </div>
                                         <div class="comentario mt-3">
-                                            <p class="text-lg uppercase">Comentario</p>
-                                            <p class="text-base">{{ $visitado->comentario }} </p>
+                                            <p class="text-base sm:text-lg uppercase">Comentario</p>
+                                            <p class="text-sm sm:text-base">{{ $visitado->comentario }} </p>
                                         </div>
                                     </div>
-                                    <div class="valoracion ml-3 mt-11">
-                                        <p class="text-lg uppercase">Valoración</p>
-                                        <p class="text-base">Comida · {{ $visitado->punCom }} </p>
-                                        <p class="text-base">Servicio · {{ $visitado->punSer }} </p>
-                                        <p class="text-base">Calidad-Precio · {{ $visitado->punCalPre }} </p>
+                                    <div class="valoracion mt-5 ml-3 md:mt-11">
+                                        <p class="text-base sm:text-lg uppercase">Valoración</p>
+                                        <p class="text-sm sm:text-base">Comida · {{ $visitado->punCom }} </p>
+                                        <p class="text-sm sm:text-base">Servicio · {{ $visitado->punSer }} </p>
+                                        <p class="text-sm sm:text-base">Calidad-Precio · {{ $visitado->punCalPre }} </p>
                                     </div>
-                                    <div class="absolute top-3 right-6 flex flex-col justify-end mr-3 mt-3">
+                                    <div class="absolute bottom-3 md:bottom-auto md:top-3 right-6 flex flex-col justify-end mr-3 mt-3">
                                         <form action="{{ route('restauranteVisitado.destroy', $visitado->idResVis) }}"
                                             method="POST">
                                             <a href="{{ route('restauranteVisitado.edit', $visitado->idResVis) }}">
                                                 <p
-                                                    class="cursor-pointer text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center">
+                                                    class="cursor-pointer text-base sm:text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center justify-end">
                                                     <img class="w-7 inline-block"
                                                         src="{{ URL::asset('img/editar.svg') }}" />
                                                     &nbspEditar
@@ -108,7 +108,7 @@
                                             @method('DELETE')
                                             <td> <button type="submit" class="mt-3">
                                                     <p
-                                                        class="cursor-pointer text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center">
+                                                        class="cursor-pointer text-base sm:text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center justify-end">
                                                         <img class="w-7 inline-block"
                                                             src="{{ URL::asset('img/basura.svg') }}" />
                                                         &nbspBorrar
