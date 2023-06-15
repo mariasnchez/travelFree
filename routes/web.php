@@ -36,7 +36,7 @@ Route::resource('/restauranteVisitado', RestauranteVisitadoController::class)->m
 Route::resource('/opiniones', OpinionesController::class)->middleware('auth');
 Route::resource('/perfil', PerfilController::class)->middleware('auth');
 
-
+Route::post('myurl', [CiudadController::class, 'show']);
 
 
 Route::get('/dashboard', function () {

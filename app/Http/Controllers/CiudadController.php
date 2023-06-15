@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Ciudad;
 use Illuminate\Http\Request;
 
+use Response;
+    use DB;
+
 class CiudadController extends Controller
 {
     public function index(Request $request)
@@ -79,4 +82,19 @@ class CiudadController extends Controller
             ->route("users.ciudad.index")
             ->with("success", "Ciudad añadida exitosamente");
     }
+
+    public function show(Request $request)
+        {
+            $data = trim($request->valor);
+            $result = DB::table('ciudad')
+            ->where('nombre','like', $data.'%')
+            ->limit(5)
+            ->get();
+            return response()->json([
+                "estado"=>1,
+                "result" => $result
+            ]);
+        }
+    
+
 }

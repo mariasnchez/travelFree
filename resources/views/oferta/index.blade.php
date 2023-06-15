@@ -13,10 +13,11 @@
     <script src="{{ asset('js/animacion.js') }}"></script>
 
 
+
 </head>
 
 <body>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div id="bg-video">
         <video autoplay muted loop>
@@ -49,7 +50,7 @@
 
 
         </div>
-        <h1 id="titulo" >
+        <h1 id="titulo">
             TravelFree
             <svg width="25.30757mm" height="25.30757mm" viewBox="0 0 158.30757 158.30757" version="1.1" id="svg5"
                 xml:space="preserve" inkscape:version="1.2.2 (732a01da63, 2022-12-09)" sodipodi:docname="logo.svg"
@@ -92,23 +93,20 @@
             </svg>
         </h1>
     </div>
-    
+
 
     <div id="contenedorBusc">
         <div id="buscador">
             <form action="ciudad" method="GET">
                 <div id="buscadorSel">
-                    <select id="search-input" class="search-input" name="query">
-                        <option value="">¿Dónde quieres ir?</option>
-                        @foreach ($ciudades as $ciudad)
-                            <option value="{{ $ciudad->nombre }}">{{ $ciudad->nombre }}</option>
-                        @endforeach
-                    </select>
-                    <button type="submit" id="buscar">
-                        Buscar
-                    </button>
+                    <input type="text" id="mysearch" class="search-input" name="query"
+                        placeholder="¿A qué ciudad quieres ir?">
+                    <button type="submit" id="buscar">Buscar</button>
                 </div>
+                <ul id="showlist" tabindex='1' class="list-group"></ul>
+
             </form>
+
         </div>
     </div>
 
@@ -169,6 +167,7 @@
         @endforeach
     </div>
 
+    <script src="{{ asset('js/buscador.js') }}" type="module"></script>
 
 </body>
 

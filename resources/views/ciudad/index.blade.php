@@ -56,18 +56,12 @@
     <div class="flex justify-center mx-10 ">
         <form action="ciudad" method="GET" class="w-full max-w-sm">
             <div class="flex">
-                <select id="search-input" name="query"
-                    class="search rounded-md w-full appearance-none border-0 py-4 pl-12 pr-4 outline-none hover:bg-slate-100 focus:bg-slate-100  h-16">
-                    <option value="">¿Dónde quieres ir?</option>
-                    @foreach ($ciudades as $ciudades)
-                        <option value="{{ $ciudades->nombre }}">{{ $ciudades->nombre }}</option>
-                    @endforeach
-                </select>
-                <button type="submit"
-                    class="flex rounded-md items-center justify-center bg-slate-500 hover:bg-slate-600 text-white px-4 py-4 ml-1 ">
-                    Buscar
-                </button>
+                <input type="text" id="mysearch" class="search-input" name="query"
+                    placeholder="¿A qué ciudad quieres ir?">
+                <button type="submit" id="buscar">Buscar</button>
             </div>
+            <ul id="showlist" tabindex='1' class="list-group"></ul>
+
         </form>
     </div>
 
@@ -157,6 +151,9 @@
             </a>
         @endforeach
     </div>
+
+    <script src="{{ asset('js/buscador.js') }}" type="module"></script>
+
 </body>
 
 </html>
