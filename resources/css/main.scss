@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 //vista oferta
 body {
     background-color: #ececec;
@@ -141,7 +140,16 @@ body {
     line-height: 2.5rem;
     text-transform: uppercase;
 }
-
+#recientes{
+    display: flex;
+    align-items: center;
+    margin-left: 2.5rem;
+    margin-top: -2.5rem;
+    color: black;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+}
 #contenedorBusc {
     display: flex;
     align-items: center;
@@ -210,11 +218,10 @@ body {
 }
 
 #ciudad img {
-    height:auto;
+    height: auto;
     width: auto;
     max-width: 100%;
 }
-
 
 #capaCiudad,
 #capaOferta {
@@ -313,7 +320,20 @@ body {
     display: inline-block;
 }
 
+#EnglishButton {
+    font-size: 1.325rem;
+    margin-left: 2.5rem;
+    margin-bottom: 0.5rem;
+}
 
+#SpanishButton {
+    font-size: 1.325rem;
+    margin-left: 10px;
+}
+
+#SpanishButton:hover, #EnglishButton:hover {
+    color: #525252;
+}
 
 //vista ciudad
 .bg-image {
@@ -372,7 +392,6 @@ body {
     right: 2px;
 }
 
-
 //vista restaurante y hotel detallado
 .custom-progress {
     border-radius: 10px;
@@ -393,19 +412,16 @@ body {
     border-radius: 10px;
 }
 
-//vista hotel 
 
 
-
-
-//responsive 
+//responsive
 @media (min-width: 768px) {
     #titulo {
         font-size: 3.75rem;
         line-height: 1;
     }
     .subtitulo {
-        font-size: 2.25rem;  
+        font-size: 2.25rem;
     }
 }
 
@@ -413,10 +429,9 @@ body {
     #titulo {
         font-size: 3.75rem;
         line-height: 1;
-        
     }
-    #titulo svg{
-        width: 5rem/* 80px */;
+    #titulo svg {
+        width: 5rem /* 80px */;
     }
     #buscador {
         padding-left: 8rem;
@@ -429,10 +444,10 @@ body {
 
 @media (min-width: 1024px) {
     #titulo {
-        font-size: 4.5rem/* 72px */;
+        font-size: 4.5rem /* 72px */;
         line-height: 1;
     }
-    #titulo svg{
+    #titulo svg {
         width: 7rem;
     }
     #buscador {
@@ -449,7 +464,7 @@ body {
 
 @media (min-width: 1280px) {
     #titulo {
-        font-size: 8rem/* 128px */;
+        font-size: 8rem /* 128px */;
         line-height: 1;
     }
     #buscador {

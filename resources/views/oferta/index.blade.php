@@ -98,9 +98,10 @@
         <div id="buscador">
             <form action="ciudad" method="GET">
                 <div id="buscadorSel">
-                    <input type="text" id="mysearch" class="search-input" name="query"
-                        placeholder="¿A qué ciudad quieres ir?">
-                    <button type="submit" id="buscar">Buscar</button>
+                    <input type="text" id="mysearch" class="search-input translationText"
+                        data-translation-key="search" name="query" placeholder="¿A qué ciudad quieres ir?">
+                    <button type="submit" data-translation-key="search" class="translationText"
+                        id="buscar">Buscar</button>
                 </div>
                 <ul id="showlist" tabindex='1' class="list-group"></ul>
 
@@ -110,16 +111,15 @@
     </div>
 
 
-    <div id="recientes" class="subtitulo">
+    <div id="recents" data-translation-key="recents" class="subtitulo translationText">
         <h1>Búsquedas recientes</h1>
     </div>
 
-    <div id="recientes" tabindex='1' class="list-group"></ul>
+        <div id="recientes"></div>
 
+    
 
-
-
-    <div class="subtitulo">
+    <div data-translation-key="destacadas" class="subtitulo translationText">
         <h1>Ciudades destacadas</h1>
     </div>
 
@@ -142,7 +142,7 @@
     </div>
 
 
-    <div class="subtitulo">
+    <div data-translation-key="ofertas" class="subtitulo translationText">
         <h1>Las mejores ofertas en el momento</h1>
     </div>
 
@@ -170,8 +170,15 @@
         @endforeach
     </div>
 
+
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
+
     <script src="{{ asset('js/buscador.js') }}" type="module"></script>
     <script src="{{ asset('js/localRecientes.js') }}" type="module"></script>
+
+
+
 
 
 </body>

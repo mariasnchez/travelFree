@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -20,11 +20,13 @@
         </div>
         <div class=" mt-6 text-black">
             <a href="/restauranteVisitado" class="text-lg hover:underline"><img class="inline-block w-5 mr-2"
-                    src="{{ URL::asset('img/volver.svg') }}" />Volver</a>
+                    src="{{ URL::asset('img/volver.svg') }}" />
+                <p class="translationText inline-block hover:underline" data-translation-key="volver">Volver</p>
+            </a>
         </div>
         <div class="container m-10 mt-3">
             <div class="text-4xl text-center text-[#727272] mb-6">
-                <p>Nueva visita </p>
+                <p class="translationText" data-translation-key="nuevaVis">Nueva visita </p>
             </div>
             <div class=" mb-10 rounded-lg">
 
@@ -40,24 +42,28 @@
                                     @csrf
 
                                     <div class="mb-4">
-                                        <label for="restaurante" class="block uppercase font-bold mb-1">Restaurante</label>
+                                        <label for="restaurante"
+                                            class="block uppercase font-bold mb-1 translationText" data-translation-key="restaurante">Restaurante</label>
                                         <select name="restaurante" id="restaurante"
                                             class="border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500">
                                             @foreach ($restaurantes as $restaurante)
-                                                <option value="{{ $restaurante->nombre }}">{{ $restaurante->nombre }}</option>
+                                                <option value="{{ $restaurante->nombre }}">{{ $restaurante->nombre }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="fechaVisita" class="block uppercase font-bold mb-1">Fecha visita</label>
+                                        <label for="fechaVisita" class="block uppercase font-bold mb-1 translationText" data-translation-key="fecha">Fecha
+                                            visita</label>
                                         <input type="date" name="fechaVisita" id="fechaVisita"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
+                                            required>
                                     </div>
 
                                     <div>
                                         <div class="mb-4">
-                                            <label for="comida" class="block uppercase font-bold mb-1">Puntuación de
+                                            <label for="comida" class="block uppercase font-bold mb-1 translationText" data-translation-key="punCom">Puntuación de
                                                 comida</label>
                                             <input type="number" name="comida" id="comida"
                                                 class="border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
@@ -66,7 +72,7 @@
 
 
                                         <div class="mb-4">
-                                            <label for="servicio" class="block uppercase font-bold mb-1">Puntuación de
+                                            <label for="servicio" class="block uppercase font-bold mb-1 translationText" data-translation-key="punSer">Puntuación de
                                                 servicio</label>
                                             <input type="number" name="servicio" id="servicio"
                                                 class=" border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
@@ -74,7 +80,7 @@
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="calidadPrecio" class="block uppercase font-bold mb-1">Puntuación
+                                            <label for="calidadPrecio" class="block uppercase font-bold mb-1 translationText" data-translation-key="punCalPre">Puntuación
                                                 de
                                                 calidad-precio</label>
                                             <input type="number" name="calidadPrecio" id="calidadPrecio"
@@ -84,14 +90,14 @@
 
                                         <div class="mb-4">
                                             <label for="comentario"
-                                                class="block uppercase font-bold mb-1">Comentario</label>
+                                                class="block uppercase font-bold mb-1 translationText" data-translation-key="comentario">Comentario</label>
                                             <textarea name="comentario" id="comentario"
                                                 class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required></textarea>
                                         </div>
 
                                         <div>
                                             <button type="submit"
-                                                class="bg-slate-500 hover:bg-slate-700 text-white font-bold uppercase py-2 px-4 rounded ">Añadir
+                                                class="bg-slate-500 hover:bg-slate-700 text-white font-bold uppercase py-2 px-4 rounded translationText" data-translation-key="añadirVis">Añadir
                                                 visita</button>
                                         </div>
                                 </form>
@@ -103,6 +109,7 @@
             </div>
         </div>
     </div>
-
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
 
 </body>

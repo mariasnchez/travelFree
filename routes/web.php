@@ -13,6 +13,8 @@ use App\Http\Controllers\OpinionesController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\IdiomaController;
+
 
 
 
@@ -37,6 +39,12 @@ Route::resource('/opiniones', OpinionesController::class)->middleware('auth');
 Route::resource('/perfil', PerfilController::class)->middleware('auth');
 
 Route::post('myurl', [CiudadController::class, 'show']);
+
+Route::get('/en', function () {
+    App::setLocale('en');
+    return view('oferta.index');;
+});
+
 
 
 Route::get('/dashboard', function () {

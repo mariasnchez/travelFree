@@ -48,8 +48,11 @@
 
     <div class=" ml-6 mt-6 text-black">
         <a href="restaurante?query={{ $restaurante->ciudad->nombre }}" class="text-sm hover:underline"><img
-                class="inline-block w-5 mr-2" src="{{ URL::asset('img/volver.svg') }}" />Restaurantes en
-            {{ $restaurante->ciudad->nombre }}</a>
+                class="inline-block w-5 mr-2" src="{{ URL::asset('img/volver.svg') }}" />
+            <p class="inline-block translationText capitalize hover:underline" data-translation-key="restEn">
+                Restaurantes en</p>
+            {{ $restaurante->ciudad->nombre }}
+        </a>
     </div>
 
 
@@ -59,7 +62,8 @@
             @if ($numeroComentarios == 1)
                 <span>{{ $numeroComentarios }} opinión</span>
             @else
-                <span>{{ $numeroComentarios }} opiniones</span>
+                <p class="inline-block">{{ $numeroComentarios }}</p>
+                <p class="translationText inline-block" data-translation-key="opiniones">opiniones</p>
             @endif
         </span>
         <span class="px-3 text-lg border border-r-slate-500"> {{ $restaurante->precio }}</span>
@@ -99,11 +103,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3 mx-10 my-6">
         <div class="p-4  bg-white mb-6 md:mb-0 md:mr-4 ">
             <div class="w-full h-16rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Puntuación</p>
+                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 translationText"
+                    data-translation-key="puntuacion">
+                    Puntuación</p>
             </div>
             @if ($numeroComentarios == 0)
                 <div class="ml-4">
-                    <p class="text-xl">Aún no hay valoraciones.</p>
+                    <p class="text-xl translationText" data-translation-key="valoraciones">Aún no hay valoraciones.</p>
                 </div>
             @else
                 <div class="ml-4">
@@ -111,27 +117,30 @@
                         {{ $mediaRedondeada }}
                     </span>
                     @if ($mediaRedondeada < 5)
-                        <span class="text-xl">Malo</span>
+                        <span class="text-xl translationText" data-translation-key="malo">Malo</span>
                     @elseif($mediaRedondeada >= 5 && $mediaRedondeada < 7)
-                        <span class="text-xl">Aceptable</span>
+                        <span class="text-xl translationText" data-translation-key="aceptable">Aceptable</span>
                     @elseif($mediaRedondeada >= 7 && $mediaRedondeada < 8)
-                        <span class="text-xl">Genial</span>
+                        <span class="text-xl translationText" data-translation-key="genial">Genial</span>
                     @elseif($mediaRedondeada >= 8 && $mediaRedondeada < 9)
-                        <span class="text-xl">Fantástico</span>
+                        <span class="text-xl translationText" data-translation-key="fantastico">Fantástico</span>
                     @elseif($mediaRedondeada >= 9)
-                        <span class="text-xl">Excelente</span>
+                        <span class="text-xl translationText" data-translation-key="excelente">Excelente</span>
                     @endif
                 </div>
                 <div class="text-xl mt-4">
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                    <p class="py-4 ml-4 mr-1 inline-block"><progress class="custom-progress mr-1"
                             value="{{ $sumaCom / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaCom / $numeroComentarios, 1) }} · Comida</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                        {{ number_format($sumaCom / $numeroComentarios, 1) }} ·
+                    <p class="inline-block translationText" data-translation-key="comida">Comida</p>
+                    <p class="py-4 ml-4 mr-1 inline-block"><progress class="custom-progress mr-1"
                             value="{{ $sumaSer / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaSer / $numeroComentarios, 1) }} · Servicio</p>
-                    <p class="py-4 mx-4"><progress class="custom-progress mr-1"
+                        {{ number_format($sumaSer / $numeroComentarios, 1) }} ·
+                    <p class="inline-block translationText" data-translation-key="servicio">Servicio</p>
+                    <p class="py-4 ml-4 mr-1 inline-block"><progress class="custom-progress mr-1"
                             value="{{ $sumaCalPre / $numeroComentarios }}" max="10"></progress>
-                        {{ number_format($sumaCalPre / $numeroComentarios, 1) }} · Calidad-Precio
+                        {{ number_format($sumaCalPre / $numeroComentarios, 1) }} ·
+                    <p class="inline-block translationText" data-translation-key="calPre">Calidad-Precio
                     </p>
                 </div>
 
@@ -139,7 +148,8 @@
         </div>
         <div class="p-4 bg-white mb-6 md:mb-0 md:mr-4">
             <div class="w-full h-16 rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Información</p>
+                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 translationText"
+                    data-translation-key="info">Información</p>
             </div>
             <div class="ml-4">
                 <p class="text-xl">{{ $restaurante->descripcion }}</p>
@@ -147,24 +157,30 @@
         </div>
         <div class="p-4 bg-white ">
             <div class="w-full h-16 rounded-md mb-6">
-                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Detalles</p>
+                <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 translationText"
+                    data-translation-key="detalles">Detalles</p>
             </div>
-            <div class="ml-4">
-                <p class="text-lg font-bold uppercase">Rango de precios</p>
+            <div class="ml-4 text-lg">
+                <p class="text-lg font-bold uppercase translationText" data-translation-key="rango">Rango de
+                    precios</p>
                 @if ($restaurante->precio == '€')
-                    <p class="text-lg">Menos de 10€</p>
+                    <p class="translationText inline-block" data-translation-key="menos">Menos de</p>
+                    <p class="inline-block">10€</p>
                 @elseif($restaurante->precio == '€€')
-                    <p class="text-lg">Entre 10€ y 20€</p>
+                    <p class=" translationText inline-block" data-translation-key="entre">Entre</p>
+                    <p class="inline-block">10€ - 20€</p>
                 @elseif($restaurante->precio == '€€€')
-                    <p class="text-lg">Entre 20€ y 30€</p>
+                    <p class="translationText inline-block" data-translation-key="entre">Entre</p>
+                    <p class="inline-block">20€ - 30€</p>
                 @elseif($restaurante->precio == '€€€€')
-                    <p class="text-lg">Más de 30€</p>
+                    <p class="translationText inline-block" data-translation-key="mas">Más de</p>
+                    <p class="inline-block">30€</p>
                 @endif
-                <p class="text-xs">*Por persona</p>
+                <p class="text-xs translationText" data-translation-key="persona">*Por persona</p>
             </div>
-            <div class="ml-4 mt-4">
-                <p class="text-lg font-bold uppercase">Tipo de comida</p>
-                <p class="text-lg">{{ $restaurante->tipoCocina }}</p>
+            <div class="ml-4 mt-4 text-lg">
+                <p class=" font-bold uppercase translationText" data-translation-key="tipoCom">Tipo de comida</p>
+                <p>{{ $restaurante->tipoCocina }}</p>
             </div>
         </div>
     </div>
@@ -172,7 +188,8 @@
 
     <div class="mx-10 mb-10 p-4 bg-white ">
         <div class="w-full rounded-md mb-6">
-            <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400">Opiniones</p>
+            <p class="text-2xl uppercase py-4 mx-4 border-b border-b-slate-400 translationText"
+                data-translation-key="opiniones">Opiniones</p>
         </div>
         @if ($numeroComentarios > 0)
             @foreach ($restauranteVisitado as $visitado)
@@ -186,10 +203,15 @@
             @endforeach
         @else
             <div class="mx-4 mb-4">
-                <p class="text-xl"> Aún no hay opiniones. </p>
+                <p class="text-xl translationText" data-translation-key="aunNo"> Aún no hay opiniones. </p>
             </div>
+        @endif
     </div>
-    @endif
+
+
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
+
 </body>
 
 </html>

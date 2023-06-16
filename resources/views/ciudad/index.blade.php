@@ -56,9 +56,10 @@
     <div class="flex justify-center mx-10 ">
         <form action="ciudad" method="GET" class="w-full max-w-sm">
             <div class="flex">
-                <input type="text" id="mysearch" class="search-input" name="query"
-                    placeholder="¿A qué ciudad quieres ir?">
-                <button type="submit" id="buscar">Buscar</button>
+                <input type="text" id="mysearch" class="search-input translationText" data-translation-key="search"
+                    name="query" placeholder="¿A qué ciudad quieres ir?">
+                <button type="submit" data-translation-key="search" class="translationText"
+                    id="buscar">Buscar</button>
             </div>
             <ul id="showlist" tabindex='1' class="list-group"></ul>
 
@@ -71,14 +72,14 @@
             <a href="hotel?query={{ $query }}"
                 class="flex flex-col items-start justify-end h-full p-4 text-black">
                 <img class="inline-block w-8" src="{{ URL::asset('img/hotel.svg') }}" />
-                <span class="text-base font-bold">HOTELES</span>
+                <span class="text-base font-bold translationText uppercase" data-translation-key="hoteles">HOTELES</span>
             </a>
         </div>
         <div class="relative bg-white rounded-md w-44 mx-2 hover:bg-slate-100 ">
             <a href="restaurante?query={{ $query }}"
                 class="flex flex-col items-start justify-end h-full p-4 text-black">
                 <img class="inline-block w-8" src="{{ URL::asset('img/restaurante.svg') }}" />
-                <p class="text-base font-bold">RESTAURANTES</p>
+                <p class="text-base font-bold translationText uppercase" data-translation-key="restaurantes">RESTAURANTES</p>
             </a>
         </div>
     </div>
@@ -106,7 +107,7 @@
     </div>
 
     <div class="flex items-center m-10 mb-3 md:ml-36 text-black text-3xl">
-        <p>Un poco sobre</p>
+        <p class="translationText" data-translation-key="poco">Un poco sobre</p>
         <p class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </p>
     </div>
 
@@ -115,7 +116,7 @@
     </div>
 
     <div class="flex items-center m-10 text-black text-4xl uppercase">
-        <h1>Hoteles destacados</h1>
+        <h1 class="translationText" data-translation-key="destacadasHot">Hoteles destacados</h1>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 m-10">
@@ -134,7 +135,7 @@
     </div>
 
     <div class="flex items-center m-10 text-black text-4xl uppercase">
-        <h1>Restaurantes destacados</h1>
+        <h1 class="translationText" data-translation-key="destacadasRes">Restaurantes destacados</h1>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 m-10">
@@ -152,9 +153,11 @@
         @endforeach
     </div>
 
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
+
     <script src="{{ asset('js/buscador.js') }}" type="module"></script>
     <script src="{{ asset('js/localRecientes.js') }}" type="module"></script>
-
 
 </body>
 

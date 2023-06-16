@@ -46,12 +46,15 @@
 
     <div class="ml-6 mt-6 text-black">
         <a href="ciudad?query={{ $query }}" class="text-sm hover:underline"><img class="inline-block w-5 mr-2"
-                src="{{ URL::asset('img/volver.svg') }}" />Volver</a>
+                src="{{ URL::asset('img/volver.svg') }}" />
+            <p class="translationText inline-block hover:underline" data-translation-key="volver">Volver</p>
+        </a>
     </div>
 
     <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
-        <p>{{ $total }} hoteles en 
-        <span class="uppercase font-bold">{{ $ciudad->nombre }} </span></p>
+        <p>{{ $total }}&nbsp
+        <p class="translationText inline-block" data-translation-key="hotelesEn">hoteles en</p>
+        <span class="uppercase font-bold">&nbsp{{ $ciudad->nombre }} </span></p>
     </div>
 
     <div class="flex mx-10">
@@ -82,12 +85,12 @@
                         <div class="flex flex-col-reverse">
                             <div class="md:mr-4">
                                 @if ($hotel->ofertas->count() > 0)
-                                    <div class="bg-cyan-500 text-white text-right p-2 w-fit">Oferta disponible</div>
+                                    <div class="bg-cyan-500 text-white text-right p-2 w-fit translationText" data-translation-key="disponible" >Oferta disponible</div>
                                 @endif
                             </div>
                             <div class="mt-auto md:mr-4 text-right">
                                 <span class="font-bold text-xl">{{ $hotel->precio }}€</span>
-                                <span class="text-sm">/noche</span>
+                                <span class="text-sm translationText" data-translation-key="noche" >/noche</span>
                             </div>
                         </div>
                         <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="hidden md:block ml-auto h-40 -mt-4 -mr-4">
@@ -96,7 +99,7 @@
                         <div class="absolute top-4 right-4 w-28 h-40 md:hidden">
                             <img src="{{ $hotel->foto1 }}" alt="Imagen 1" class="ml-auto -mt-4 -mr-4">
                         </div>
-        
+
                     </div>
                 @endforeach
                 {{ $hoteles->appends(request()->query())->links() }}
@@ -106,6 +109,9 @@
 
 
     </div>
+
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
 
 </body>
 

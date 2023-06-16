@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -35,25 +35,32 @@
         </div>
         <div class="container lg:m-10 mt-10">
             <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
-                <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
+                <p class="inline-block translationText" data-translation-key="hola">¡Hola,</p> <span
+                    class="inline-block font-bold">
+                    {{ Auth::user()->name }}</span>!
             </div>
 
             <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
                 <a href="hotelVisitado">
-                    <p class=" cursor-pointer hover:text-black">Hoteles</p>
+                    <p class=" cursor-pointer hover:text-black translationText" data-translation-key="hoteles">Hoteles
+                    </p>
                 </a>
                 <a href="restauranteVisitado">
-                    <p class="cursor-pointer hover:text-black">Restaurantes</p>
+                    <p class="cursor-pointer hover:text-black translationText" data-translation-key="restaurantes">
+                        Restaurantes</p>
                 </a>
-                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3">Opiniones</p>
+                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3 capitalize translationText"
+                    data-translation-key="opiniones">Opiniones</p>
                 <a href="perfil">
-                    <p class=" cursor-pointer hover:text-black">Mi perfil</p>
+                    <p class=" cursor-pointer hover:text-black translationText" data-translation-key="perfil">Mi perfil
+                    </p>
                 </a>
             </div>
 
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-3xl sm:text-4xl uppercase">Tus opiniones</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase translationText" data-translation-key="tusOpi">Tus
+                        opiniones</h1>
                 </div>
                 <div class="mt-4">
                     @if ($opinionesPaginadas->count() === 0)
@@ -92,6 +99,9 @@
             </div>
         </div>
     </div>
+
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
 
 
 </body>

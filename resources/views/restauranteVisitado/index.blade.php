@@ -35,28 +35,37 @@
         </div>
         <div class="container lg:m-10 mt-10">
             <div class="text-5xl sm:text-6xl text-[#727272] mb-10">
-                <p>¡Hola, <span class="font-bold">{{ Auth::user()->name }}</span>!</p>
+                <p class="inline-block translationText" data-translation-key="hola">¡Hola,</p> <span
+                    class="inline-block font-bold">
+                    {{ Auth::user()->name }}</span>!
             </div>
 
             <div class="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap justify-start">
                 <a href="hotelVisitado">
-                    <p class=" cursor-pointer hover:text-black">Hoteles</p>
+                    <p class=" cursor-pointer hover:text-black translationText" data-translation-key="hoteles">Hoteles
+                    </p>
                 </a>
-                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3">Restaurantes</p>
+                <p class="font-bold  border-b-4 border-b-[#4B4B4B] pb-3 translationText"
+                    data-translation-key="restaurantes">Restaurantes</p>
                 <a href="opiniones">
-                    <p class=" cursor-pointer hover:text-black">Opiniones</p>
+                    <p class=" cursor-pointer hover:text-black capitalize translationText" data-translation-key="opiniones">
+                        Opiniones</p>
                 </a>
                 <a href="perfil">
-                    <p class=" cursor-pointer hover:text-black">Mi perfil</p>
+                    <p class=" cursor-pointer hover:text-black translationText" data-translation-key="perfil">Mi perfil
+                    </p>
                 </a>
             </div>
 
             <div class="mt-10 text-black">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-3xl sm:text-4xl uppercase">Restaurantes visitados</h1>
+                    <h1 class="text-3xl sm:text-4xl uppercase translationText" data-translation-key="resVisitados">
+                        Restaurantes visitados</h1>
                     <a href="{{ URL::to('restauranteVisitado/create') }}">
-                        <h1 class="cursor-pointer hover:text-slate-600  text-base text-right sm:text-xl uppercase"><img
-                                class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />Añadir visita</h1>
+                        <h1 class="cursor-pointer hover:text-slate-600 text-base text-right sm:text-xl uppercase"><img
+                                class="w-7 mr-2 inline-block" src="{{ URL::asset('img/mas.svg') }}" />
+                            <p class="inline-block translationText" data-translation-key="añadir">Añadir visita</p>
+                        </h1>
                     </a>
                 </div>
                 @if ($resVisitadoUsuario->count() === 0)
@@ -69,50 +78,66 @@
                                     <div>
                                         <div class="nombre mb-3">
                                             <a href="/restauranteDetallado?query={{ $visitado->restaurante->nombre }}">
-                                                <p class="text-xl sm:text-2xl font-bold uppercase hover:underline cursor-pointer">
+                                                <p
+                                                    class="text-xl sm:text-2xl font-bold uppercase hover:underline cursor-pointer">
                                                     {{ $visitado->restaurante->nombre }},
                                                     {{ $visitado->restaurante->ciudad->nombre }}
                                                 </p>
                                             </a>
                                         </div>
                                         <div class="fecha">
-                                            <p class="text-base sm:text-lg uppercase">Fecha</p>
+                                            <p class="text-base sm:text-lg uppercase translationText"
+                                                data-translation-key="fecha">Fecha</p>
                                             <p class="text-sm sm:text-base">
                                                 {{ date('d/m/y', strtotime($visitado->fechaVisita)) }}
                                             </p>
                                         </div>
                                         <div class="comentario mt-3">
-                                            <p class="text-base sm:text-lg uppercase">Comentario</p>
+                                            <p class="text-base sm:text-lg uppercase translationText"
+                                                data-translation-key="comentario">Comentario</p>
                                             <p class="text-sm sm:text-base">{{ $visitado->comentario }} </p>
                                         </div>
                                     </div>
                                     <div class="valoracion mt-5 ml-3 md:mt-11">
-                                        <p class="text-base sm:text-lg uppercase">Valoración</p>
-                                        <p class="text-sm sm:text-base">Comida · {{ $visitado->punCom }} </p>
-                                        <p class="text-sm sm:text-base">Servicio · {{ $visitado->punSer }} </p>
-                                        <p class="text-sm sm:text-base">Calidad-Precio · {{ $visitado->punCalPre }} </p>
+                                        <p class="text-base sm:text-lg uppercase translationText"
+                                            data-translation-key="valoracion">Valoración</p>
+                                        <p class="text-sm sm:text-base translationText inline-block"
+                                            data-translation-key="comida">Comida</p>
+                                        <p class="inline-block"> · {{ $visitado->punCom }}
+                                        </p>
+                                        <br>
+                                        <p class="text-sm sm:text-base translationText inline-block"
+                                            data-translation-key="servicio">Servicio</p>
+                                        <p class="inline-block"> · {{ $visitado->punSer }}
+                                        </p>
+                                        <br>
+                                        <p class="text-sm sm:text-base translationText inline-block"
+                                            data-translation-key="calPre">Calidad-Precio</p>
+                                        <p class="inline-block"> ·
+                                            {{ $visitado->punCalPre }}
+                                        </p>
+                                        </p>
                                     </div>
-                                    <div class="absolute bottom-3 md:bottom-auto md:top-3 right-6 flex flex-col justify-end mr-3 mt-3">
+                                    <div
+                                        class="absolute bottom-3 md:bottom-auto md:top-3 right-6 flex flex-col justify-end mr-3 mt-3">
                                         <form action="{{ route('restauranteVisitado.destroy', $visitado->idResVis) }}"
                                             method="POST">
                                             <a href="{{ route('restauranteVisitado.edit', $visitado->idResVis) }}">
-                                                <p
-                                                    class="cursor-pointer text-base sm:text-lg hover:text-teal-900 text-teal-700 font-bold uppercase flex items-center justify-end">
-                                                    <img class="w-7 inline-block"
-                                                        src="{{ URL::asset('img/editar.svg') }}" />
-                                                    &nbspEditar
-                                                </p>
+                                                <img class="w-7 inline-block"
+                                                    src="{{ URL::asset('img/editar.svg') }}" />
+                                                <p class="translationText cursor-pointer inline-block text-base sm:text-lg hover:text-teal-900 text-teal-700 font-bold uppercase  items-center justify-end"
+                                                    data-translation-key="editar">Editar</p>
                                             </a>
+                                            <br>
 
                                             @csrf
                                             @method('DELETE')
                                             <td> <button type="submit" class="mt-3">
-                                                    <p
-                                                        class="cursor-pointer text-base sm:text-lg hover:text-red-900 text-red-600 font-bold uppercase flex items-center justify-end">
-                                                        <img class="w-7 inline-block"
-                                                            src="{{ URL::asset('img/basura.svg') }}" />
-                                                        &nbspBorrar
-                                                    </p>
+                                                    <img class="w-7 inline-block"
+                                                        src="{{ URL::asset('img/basura.svg') }}" />
+                                                    <p class="translationText cursor-pointer inline-block text-base sm:text-lg hover:text-red-900 text-red-600 font-bold uppercase  items-center justify-end"
+                                                        data-translation-key="borrar">Borrar</p>
+
                                                 </button> </td>
                                         </form>
                                     </div>
@@ -126,6 +151,9 @@
             </div>
         </div>
     </div>
+
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
 
 
 </body>

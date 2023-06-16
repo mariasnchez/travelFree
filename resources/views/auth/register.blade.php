@@ -35,22 +35,22 @@
         <div class="mb-4 flex justify-between items-center">
             <a class="cursor-pointer" href="ofertas"><img class="inline-block w-16"
                     src="{{ URL::asset('img/logo.svg') }}" /></a>
-            <a class="border border-slate-600 p-2 text-lg text-slate-600 hover:bg-slate-100 hover:text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('login') }}">
-                {{ __('¿Ya registrado?') }}
+            <a class="border border-slate-600 p-2 text-lg text-slate-600 hover:bg-slate-100 hover:text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 translationText"
+                data-translation-key="registrado" href="{{ route('login') }}">
+                ¿Ya registrado?
             </a>
         </div>
         <div class="container">
             <div>
                 <div class="text-5xl text-[#727272] font-bold mb-4 flex justify-center">
-                    <p>Regístrate en TravelFree</p>
+                    <p class="translationText" data-translation-key="tituloReg">Regístrate en TravelFree</p>
                 </div>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <!-- Name -->
                     <div>
-                        <x-input-label for="name" :value="__('Nombre')" />
+                        <p class="translationText" data-translation-key="nombre"> Nombre </p>
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                             :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -58,7 +58,7 @@
 
                     <!-- Email Address -->
                     <div class="mt-4">
-                        <x-input-label for="email" :value="__('Email')" />
+                        <p class="translationText" data-translation-key="email"> Correo electrónico </p>
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -66,7 +66,7 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-input-label for="password" :value="__('Contraseña')" />
+                        <p class="translationText" data-translation-key="pass"> Contraseña </p>
 
                         <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                             autocomplete="new-password" />
@@ -76,7 +76,7 @@
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-input-label for="password_confirmation" :value="__('Confirma contraseña')" />
+                        <p class="translationText" data-translation-key="confirmar"> Confirmar contraseña </p>
 
                         <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                             name="password_confirmation" required autocomplete="new-password" />
@@ -87,11 +87,15 @@
                     <div class="flex items-center justify-end mt-4">
 
                         <x-primary-button class="bg-slate-500">
-                            <p class="text-lg">{{ __('Registro') }}</p>
+                            <p class="text-lg translationText" data-translation-key="registro">Registro</p>
                         </x-primary-button>
                     </div>
                 </form>
 
             </div>
         </div>
+        <button class="traducir" id="EnglishButton">English</button>
+        <button class="traducir" id="SpanishButton">Español</button>
     </div>
+
+</body>

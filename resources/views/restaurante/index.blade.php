@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TravelFree</title>
-    
+
 </head>
 
 <body class="bg-[#ECECEC]">
@@ -39,7 +39,7 @@
             @endif
         </div>
 
-         <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
+        <h1 class="absolute text-5xl text-white md:text-6xl lg:text-7xl xl:text-9xl">
             <a class="cursor-pointer" href="ofertas"> TravelFree
                 <img class="inline-block w-16 md:w-20 lg:w-28" src="{{ URL::asset('img/logo.svg') }}" /></a>
         </h1>
@@ -49,12 +49,15 @@
 
     <div class="ml-6 mt-6 text-black">
         <a href="ciudad?query={{ $query }}" class="text-sm hover:underline"><img class="inline-block w-5 mr-2"
-                src="{{ URL::asset('img/volver.svg') }}" />Volver</a>
+                src="{{ URL::asset('img/volver.svg') }}" />
+            <p class="translationText inline-block hover:underline" data-translation-key="volver">Volver</p>
+        </a>
     </div>
 
     <div class="flex items-center m-10 mt-6 mb-3 text-black text-3xl">
-        <p>{{ $total }} restaurantes en 
-        <span class="uppercase font-bold">{{ $ciudad->nombre }} </span></p>
+        <p>{{ $total }}&nbsp
+        <p class="translationText inline-block" data-translation-key="restEn">restaurantes en</p>
+        <span class="uppercase font-bold"> &nbsp{{ $ciudad->nombre }} </span></p>
     </div>
 
     <div class="flex mx-10">
@@ -88,6 +91,8 @@
         </div>
     </div>
 
+    <button class="traducir" id="EnglishButton">English</button>
+    <button class="traducir" id="SpanishButton">Español</button>
 
 
 </body>

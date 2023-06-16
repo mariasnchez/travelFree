@@ -13,6 +13,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/main.scss', 'resources/js/app.js'])
+            <script src="{{ asset('js/traduccion.js') }}" type="module"></script>
+
     </head>
     <body class="font-sans antialiased">
         
