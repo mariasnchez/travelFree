@@ -94,8 +94,11 @@
 
             </div>
         </div>
-        <button class="traducir" id="EnglishButton">English</button>
-        <button class="traducir" id="SpanishButton">Español</button>
+        <div class="botones">
+            <img src="{{ URL::asset('img/ukflag.svg') }}"> <button class="traducir" id="EnglishButton">English</button>
+            <img src="{{ URL::asset('img/spainflag.svg') }}"><button class="traducir"
+                id="SpanishButton">Español</button>
+        </div>
     </div>
 
 </body>

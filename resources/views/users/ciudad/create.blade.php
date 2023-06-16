@@ -12,7 +12,7 @@
     <title>TravelFree</title>
 </head>
 
-<body class="bg-[#ECECEC]">
+<body class="bg-[#ECECEC] contenedor">
     <div class="m-10">
         <div class="mb-4 flex justify-between items-center">
             <img class="inline-block w-16" src="{{ URL::asset('img/logo.svg') }}" />
@@ -35,20 +35,21 @@
                     <div class="container mx-auto px-4">
                         <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg">
                             <div class="p-6">
-                                <form action="{{ route('users.ciudad.store') }}"
-                                    method="POST">
+                                <form action="{{ route('users.ciudad.store') }}" method="POST">
                                     @csrf
 
                                     <div class="mb-4">
                                         <label for="nombre" class="block uppercase font-bold mb-1">Nombre</label>
                                         <input type="text" name="nombre" id="nombre"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
+                                            required>
                                     </div>
 
                                     <div class="mb-4">
                                         <label for="pais" class="block uppercase font-bold mb-1">País</label>
                                         <input type="text" name="pais" id="pais"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
+                                            required>
                                     </div>
 
 
@@ -62,7 +63,8 @@
                                     <div class="mb-4">
                                         <label for="foto1" class="block uppercase font-bold mb-1">Foto 1</label>
                                         <input type="text" name="foto1" id="foto1"
-                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500" required>
+                                            class="w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-500"
+                                            required>
                                     </div>
 
                                     <div class="mb-4">
@@ -86,18 +88,24 @@
 
                                     <div>
                                         <button type="submit"
-                                            class="bg-slate-500 hover:bg-slate-700 text-white font-bold uppercase py-2 px-4 rounded ">Guardar
-                                            </button>
-                                    </div>
+                                            class="bg-slate-500 hover:bg-slate-700 text-white font-bold uppercase py-2 px-4 rounded inline-block">Guardar
+                                        </button>
+
+
                                 </form>
+                                <button id="obtenerDatos"
+                                    class="bg-slate-500 hover:bg-slate-700 text-white font-bold uppercase py-2 px-4 rounded inline-block">Insertar
+                                    ciudad</button>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
+    </div>
+    <script src="{{ asset('js/api.js') }}"></script>
 
 
 </body>

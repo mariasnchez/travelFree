@@ -7,6 +7,11 @@ body {
     background-color: #ececec;
 }
 
+.contenedor{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+}
+
 #bg-video {
     position: relative;
     width: 100%;
@@ -14,6 +19,12 @@ body {
     display: grid;
     place-items: center;
     height: 15rem;
+    font-weight: 500;
+
+}
+
+.font-bold{
+    font-weight: 500;
 }
 
 #bg-video video {
@@ -139,8 +150,9 @@ body {
     font-size: 1.5rem;
     line-height: 2.5rem;
     text-transform: uppercase;
+    font-weight: 400;
 }
-#recientes{
+#recientes {
     display: flex;
     align-items: center;
     margin-left: 2.5rem;
@@ -313,7 +325,7 @@ body {
     display: inline-block;
 }
 
-#precioOferta {
+#precioOfer {
     font-weight: 700;
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -322,8 +334,8 @@ body {
 
 #EnglishButton {
     font-size: 1.325rem;
-    margin-left: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-left: 10px;
+    margin-right: 15px;
 }
 
 #SpanishButton {
@@ -331,8 +343,19 @@ body {
     margin-left: 10px;
 }
 
-#SpanishButton:hover, #EnglishButton:hover {
+#SpanishButton:hover,
+#EnglishButton:hover {
     color: #525252;
+}
+
+.botones{
+    display: flex;
+    margin-left: 10px;
+
+}
+
+.botones img{
+    width: 2.25rem;
 }
 
 //vista ciudad
@@ -411,8 +434,6 @@ body {
     background-color: #007bff;
     border-radius: 10px;
 }
-
-
 
 //responsive
 @media (min-width: 768px) {

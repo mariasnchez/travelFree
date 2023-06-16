@@ -12,7 +12,7 @@
     <title>TravelFree</title>
 </head>
 
-<body class="bg-[#ECECEC]">
+<body class="bg-[#ECECEC] contenedor">
     <div class="m-10">
         <div class="mb-4 flex justify-between items-center">
             <img class="inline-block w-16" src="{{ URL::asset('img/logo.svg') }}" />

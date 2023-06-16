@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="bg-[#ECECEC]">
+<body class="bg-[#ECECEC] contenedor">
     <div class="m-10">
         <div class="mb-4 flex justify-between items-center">
             <a class="cursor-pointer" href="/ofertas"><img class="inline-block w-16"
